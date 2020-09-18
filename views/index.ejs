@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+    <head>
+        <title>Soccer</title>
+    </head>
+    <body>
+        <header id="m9Head">
+            <div id="wrap_head">
+                
+                <h2 id="home"><a href=>M9SOCCER</a></h2>
+                <nav>
+                    <ul>
+                        <li class="menu"><a href>홈</a></li>
+                        <li class="menu"><a href>운동자 예약</a></li>
+                        <li class="menu"><a href>커뮤니티</a></li>
+                    </ul>
+                </nav>
+                <h2 id="login"><a href=>로그인</a></h2>
+            </div>
+        </header>
+        <div id="test"></div>
+        <article id="reservation_article">
+            <div id="backImgMain"></div>
+            <div id="textMain">
+                <h1>축구를 즐겁게</h1>
+                <br>
+                <h1>예약을 편리하게</h1>
+                <button onclick="window.location.href='http://localhost/reservation'" id="reservationBtn">운동장 예약하기</button>
+            </div>
+        </article>
+        <div id="community_wrap">
+            <img src="images/home_community.jpg" id="communityImg">
+            <div id="communityText">
+                <h2>
+                    커뮤니티
+                </h2>
+                <p>
+                    함께할 팀원을 모집하고 싶으세요?
+                    <br><br>
+                    자신의 팀과 겨룰 상대팀을 구하고 싶으세요?
+                    <br><br>
+
+                    지금 당장 커뮤니티에 글을 작성해보세요!
+                    <br><br>
+                    함께 추억을 나누며 축구할 수 있는 동료가 생길거에요!
+                </p>
+                <br><br><br>
+                <button onclick="window.location.href='http://localhost/reservation'" id="reservationBtn">커뮤니티 바로가기</button>
+                
+            </div>         
+        </div>
+        
+        <div id="inquire_wrap">
+            <h1 class="inquireText">문의하기</h1>
+            <br>
+            <div class="inquireText">
+            <strong >운동장 예약관련 문의사항이 있으신 분은 아래의 작성폼을 작성해주시기 바랍니다.</strong>
+            </div>
+            <form action="/inquire" method="POST" id="inquireForm" name="inquire_Form">
+                <strong>고객명</strong>
+                <br>
+                <input type="text" name="userName" class="inquireForm_input" maxlength="10">
+                <br>
+                <strong>연락처</strong>
+                <br>
+                <input type="text" name="phoneNumber" class="inquireForm_input" maxlength="15">
+                <br>
+                <strong>내용</strong>
+                <br>
+                <input type="text" name="content" class="inquireForm_content" maxlength="998">
+               
+            </form>
+            <div id="inquireFormPrivacy">
+                <h3>개인정보 수집 및 이용동의에 대한 안내</h3>
+                필요 수집, 이용 항목(문의 접수와 처리, 회신을 위한 최소한의 개인정보 동의가 필요합니다.)
+
+            
+                <table id="inquireTable">
+                    <tr>
+                        <td>수집항목</td>
+                        <td>목적</td>
+                        <td>보유기간</td>
+                    </tr>
+                    <tr>
+                        <td>휴대폰 번호</td>
+                        <td>고객 문의 및 상담 요청에 대한 회신</td>
+                        <td>문의 접수 후 1년 보관</td>
+                    </tr>
+                </table>
+                    <p id="chkbox">
+                        <span>자세한 내용은  
+                            <a href="">개인정보처리방침을</a>
+                            참고하시기 바랍니다.
+                        </span>
+                    </p>
+                    &nbsp;&nbsp;&nbsp;<input type="checkbox" name="infoChk()">
+                    &nbsp;&nbsp;&nbsp; 개인정보 수집 및 이용에 동의합니다.
+                    <p id="inquireFormBtn">
+                        <input type="button" value="작성" onClick="'inquire_Form_Chk();'" name="chk">
+                    </div>    
+            </p>
+        </div>
+    </body>
+</html>
