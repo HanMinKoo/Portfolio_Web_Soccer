@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/',(req,res)=>{
   res.render('index', {title:'test'});
 });
+//app.use('email')
 
 
 // catch 404 and forward to error handler
