@@ -20,7 +20,7 @@
                         <li class="menu"><a href>커뮤니티</a></li>
                     </ul>
                 </nav>
-                <h2 id="login"><a href=>로그인</a></h2>
+                <h2 id="login"><a href='/login'>로그인</a></h2>
             </div>
         </header>
         <div id="test"></div>
@@ -61,7 +61,7 @@
             <div class="inquireText">
             <strong >운동장 예약관련 문의사항이 있으신 분은 아래의 작성폼을 작성해주시기 바랍니다.</strong>
             </div>
-            <form action="/inquire" method="POST" id="inquireForm" name="inquire_Form">
+            <form action="/inquire" method="post" id="inquireForm" name="inquire_Form">
                 <strong>고객명</strong>
                 <br>
                 <input type="text" name="userName" class="inquireForm_input" maxlength="10">
@@ -102,7 +102,6 @@
                     &nbsp;&nbsp;&nbsp; 개인정보 수집 및 이용에 동의합니다.
                     <p id="inquireFormBtn">
                         <input type="button" value="작성" onClick="inquire_Form_Chk();" name="chk">
-                        <input type="button" value="작성" onClick="alert(3)" name="chk">
                     </p>
                 </div>    
             </form>

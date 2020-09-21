@@ -1,9 +1,9 @@
 function inquire_Form_Chk(){
-    const form=document.request_form;
+    const form=document.inquire_Form;
 
     if(form.userName.value===''){
-        alert('회사 이름을 입력해주세요.');
-        form.companyName.focus(); 
+        alert('이름을 입력해주세요.');
+        form.userName.focus(); 
         return;
     }
     else if(form.phoneNumber.value===''){

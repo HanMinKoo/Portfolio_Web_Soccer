@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="stylesheets/login.css">
+    </head>
+    <body>
+        <header id="m9Head">
+            <div id="wrap_head">
+                
+                <h2 id="home"><a href=>M9SOCCER</a></h2>
+                <nav>
+                    <ul>
+                        <li class="menu"><a href>홈</a></li>
+                        <li class="menu"><a href>운동자 예약</a></li>
+                        <li class="menu"><a href>커뮤니티</a></li>
+                    </ul>
+                </nav>
+                <h2 id="login"><a href=>로그인</a></h2>
+            </div>
+        </header>
+        <div id="login_wrap">
+            <h2 style="text-align: center;">로그인</h2>
+            <form action="/" method="POST" id="loginForm" name="login_form" >
+                <br>
+                <input name="id" type="email" placeholder="아이디" required/>  <!--required는 폼 데이터가 서버로 제출되기 전 반드시 채워져있어야하는 입력 필드를 명시-->
+                <br>
+                <input name="password" type="password" placeholder="비밀번호" required/>
+                <br>
+                <input type="button" value="작성" onClick="inquire_Form_Chk();" name="chk">
+            </form>
+        </div>
+    </body>
+    
+</html>

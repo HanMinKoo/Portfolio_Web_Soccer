@@ -1,12 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
+const inquireRouter=require('./routes/Inquire_Router.js')
 
-
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views')); 
@@ -18,10 +18,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/',(req,res)=>{
-  res.render('index', {title:'test'});
+app.get('/',(req,res,next)=>{
+  res.render('index');
 });
-//app.use('email')
+app.get('/login',(req,res,next)=>{
+  res.render('login');
+});
+app.use('/inquire',inquireRouter);
+
 
 
 // catch 404 and forward to error handler
