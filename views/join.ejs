@@ -1,0 +1,42 @@
+<!DocTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="stylesheets/join.css">
+        
+    </head>
+    <body>
+       
+        <div id="join_wrap">
+            <h1 id="home"><a href="/">M9SOCCER</a></h1>
+            <form action="/join/progress" id="joinForm" name="join_form" method="post">
+
+                <label>이름</label>
+                <input type="text" name="userName">
+
+                <label>이메일</label>
+                <button type="submit" id="emailChk">중복체크</button>
+            
+                <input type="email" name="userEmail">
+        
+                <label>비밀번호</label>
+                
+                <input type="password" name="userPassword1">
+            
+                <label>비밀번호 확인</label>
+                
+                <input type="password" name="userPassword2">
+                
+                <!--<input type="button" value="가입하기" onclick="join_Progress();" name="chk">-->
+                <button type= "button" id="joinBtn" onclick="join_Progress();">
+                    가입하기
+                </button> 
+                <br> <br>
+                <strong><a href="/login" id="login">로그인</a> 하러가기</strong>
+            </form>
+            
+        </div>
+    </body>
+    <script type="text/javascript" src="javascripts/joinAndLogin.js"></script>
+    
+</html>

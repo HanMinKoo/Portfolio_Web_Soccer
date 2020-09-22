@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const inquireRouter=require('./routes/Inquire_Router.js')
+const joinRouter=require('./routes/join_Router.js');
 
 const app = express();
 
@@ -24,6 +25,10 @@ app.get('/',(req,res,next)=>{
 app.get('/login',(req,res,next)=>{
   res.render('login');
 });
+// app.get('/join',(req,res)=>{
+//   res.render('join');
+// });
+app.use('/join',joinRouter);
 app.use('/inquire',inquireRouter);
 
 

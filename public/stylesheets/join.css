@@ -1,0 +1,32 @@
+a{
+    text-decoration: none;
+    color:rgb(34, 143, 83);
+}
+#home{
+    text-align: center;
+}
+#join_wrap{
+    margin:0 auto;
+ 
+    width:400px;
+    margin-top: 10%;
+}
+input{
+    display:block;
+    margin-bottom:8%;
+    width:400px;
+    height: 40px;
+}
+#joinBtn{
+    color:white;
+    width:400px;
+    height:60px;
+    background-color: rgb(34, 143, 83);
+    border-radius: 10px;
+    margin-top:3%;
+    font-size: 0.9em;
+}
+#login{
+    text-align: center;
+    color:blue;
+}

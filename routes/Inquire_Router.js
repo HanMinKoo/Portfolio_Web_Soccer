@@ -9,7 +9,7 @@ require('dotenv').config();
 
 router.post('/', (req, res, next)=> {
     //console.log(req);
-    console.log("testtesttesttesttesttesttesttesttesttesttesttest")
+    
     let userName=req.body.userName;
     let phoneNumber=req.body.phoneNumber;
     let content=req.body.content;
