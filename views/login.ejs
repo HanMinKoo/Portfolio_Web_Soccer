@@ -21,17 +21,25 @@
         </header>
         <div id="login_wrap">
             <h1 >로그인</h1>
-            <form action="/" method="POST" id="loginForm" name="login_form" >
+            <form action="/login/process" method="post" id="loginForm" name="login_form" >
                 <br>
-                <input name="id" type="email" class=loginForm_input placeholder="아이디" required/>  <!--required는 폼 데이터가 서버로 제출되기 전 반드시 채워져있어야하는 입력 필드를 명시-->
+                <input name="email"" type="email" class=loginForm_input placeholder="이메일" required/>  <!--required는 폼 데이터가 서버로 제출되기 전 반드시 채워져있어야하는 입력 필드를 명시-->
                 <br>
                 <input name="password" type="password" class=loginForm_input placeholder="비밀번호" required/>
                 <br>
-                <input type="button" value="로그인" id=loginForm_btn class=loginForm_input onClick="inquire_Form_Chk();" name="chk">
+                <div id="loginResultText">
+                <%= text %>
+                </div>
+                    
+                <input type="button" value="로그인" id=loginForm_btn class=loginForm_input onclick="processLogin();" >
                 <br>
+
                 <strong>계정이 없으신 경우 <a href="/join" id="join">회원가입 </a>을 눌러주세요.</strong></a>
             </form>
         </div>
     </body>
-    
+    <script type="text/javascript" src="javascripts/joinAndLogin.js"></script>
+    <script>
+
+    </script>
 </html>

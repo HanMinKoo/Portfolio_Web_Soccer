@@ -45,6 +45,11 @@ a{text-decoration: none; color:black;}
     float:right;
     
 }
+#sucessLogin{
+    float:right;
+    border:3px solid red;
+ 
+}
 
 
 

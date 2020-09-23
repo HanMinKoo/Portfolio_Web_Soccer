@@ -20,8 +20,9 @@ function save(userName,phoneNumber,content,infoCheck){
         else{
             console.log('table name:inquire / Result: insert Success');
             console.log(data);
-            dbCon.end();
+            
         }
+        dbCon.end();
     });
 }
 

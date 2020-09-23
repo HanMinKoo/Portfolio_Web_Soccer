@@ -18,3 +18,20 @@ function join_Progress(){
     }
     form.submit(); 
 }
+
+
+function processLogin(){
+    const form=document.login_form;
+
+    if(form.email.value===''){
+        alert("이메일을 입력해주세요.");
+        form.email.focus();
+        return;
+    }
+    else if(form.password.value===''){
+        alert("비밀번호를 입력해주세요.");
+        form.password.focus();
+        return;
+    }
+    form.submit(); 
+}

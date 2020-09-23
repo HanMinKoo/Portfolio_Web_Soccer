@@ -20,7 +20,11 @@
                         <li class="menu"><a href>커뮤니티</a></li>
                     </ul>
                 </nav>
-                <h2 id="login"><a href='/login'>로그인</a></h2>
+                <% if(id!==''){ %>
+                    <h2 id="sucessLogin"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
+                <% } else{%>   
+                    <h2 id="login"><a href='/login'>로그인</a></h2>
+                <% }%>
             </div>
         </header>
         <div id="test"></div>

@@ -15,13 +15,14 @@ function saveUser(userName, userEmail, userPassword){
 
     dbCon.query(query, function(err,data){
         if(err){
-            console.log('table name:inquire / Error: insert query Error : ',err);
+            console.log('table name:user / Error: insert query Error : ',err);
         }
         else{
-            console.log('table name:inquire / Result: insert Success');
+            console.log('table name:user / Result: insert Success');
             console.log(data);
-            dbCon.end();
+            
         }
+        dbCon.end();
     });
     
 }
