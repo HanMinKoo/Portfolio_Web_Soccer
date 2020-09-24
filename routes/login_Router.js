@@ -44,11 +44,16 @@ router.post('/process',(req,res)=>{
         }
         else //result ==='success'
         {
+            
             console.log("email id:",id);
             req.session.email=id;
             console.log("req.session.email:",req.session.email);
             console.log("req.session",req.session);
-            res.redirect('/');
+            req.session.save(()=>{
+                console.log('session save success');
+                res.redirect('/');
+            });
+            
         }
     }
     

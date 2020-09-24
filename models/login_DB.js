@@ -27,8 +27,9 @@ function loginUser(userEmail, userPassword,callback){
         }
         if(data[0]===undefined) //해당 email password를 쿼리로 못찾았을 경우
             callback('fail'); 
-        else
+        else{
           callback('success');
+        }
         
         dbCon.end();
     });

@@ -12,6 +12,7 @@ function connectDb(){
     });
 }
 
+
 module.exports = {
 	//connectDB,
 	host: process.env.DB_IP,

@@ -17,10 +17,11 @@ a{text-decoration: none; color:black;}
 #m9Head{
     position: fixed;
     top:0;
-
+    background-color: white;
     width:100%;
     min-width:1200px;
     height:60px;
+    z-index: 1;
   
 }
 #wrap_head{
@@ -28,6 +29,7 @@ a{text-decoration: none; color:black;}
     width: 1200px;
     margin:0 auto;
     text-align: center;
+    border:3px solid black;
  
 }
 #wrap_head ul ,#home {
@@ -42,7 +44,7 @@ a{text-decoration: none; color:black;}
     margin-right:80px;
 }
 #login{
-    float:right;
+    float:left;
     
 }
 #sucessLogin{
@@ -81,6 +83,8 @@ a{text-decoration: none; color:black;}
     border-radius: 15px;
     margin-top:3%;
     font-size: 0.9em;
+
+    cursor: pointer;
 }
 #community_wrap{
     width:1200px;
@@ -146,4 +150,5 @@ a{text-decoration: none; color:black;}
     margin-bottom: 3%;
 
     border-radius: 8px;
+    cursor: pointer;
 }

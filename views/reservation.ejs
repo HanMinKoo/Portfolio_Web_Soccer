@@ -1,0 +1,54 @@
+!<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="stylesheets/reservation.css">
+        
+    </head>
+    <body>
+        <header id="m9Head">
+            <div id="wrap_head">
+                
+                <h2 id="home"><a href=>M9SOCCER</a></h2>
+                <nav>
+                    <ul>
+                        <li class="menu"><a href="/">홈</a></li>
+                        <li class="menu"><a href="/reservation">운동자 예약</a></li>
+                        <li class="menu"><a href>커뮤니티</a></li>
+                    </ul>
+                </nav>
+                <% if(id!==''){ %>
+                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
+                <% } else{%>   
+                    <h2 id="login"><a href='/login'>로그인</a></h2>
+                <% }%>
+            </div>
+        </header>
+            <div id=groundListBackGround>
+                <article id="groundList">
+                    <h1>운동장 리스트</h1>
+                    <% for(let i=0; i<groundList.length; i++){%>  
+
+                        <button class="groundListBtn">
+                            <img class="groundImg" src="images/groundImg/<%=groundList[i].ground_img_path%>/<%=groundList[i].ground_img_name%>">
+                            <ul>
+                                <li id="groundLinkLi"><a href="/reservation/<%=groundList[i].ground_number%>" id="groundLink"><%=groundList[i].ground_name%></a></li>
+                                <li><h3>이용 시간: <%=groundList[i].ground_use_time%></h3></li>
+                                <li><h3>위치: <%=groundList[i].ground_location%></h3></li>
+                                <li><h3>가격: <%=groundList[i].ground_price%></h3></li>   
+                            </ul>
+                        </button>
+                        
+                        
+                        <%}%>
+                
+                
+
+                    
+
+                </article>
+            </div>
+
+        
+    </body>
+</html>

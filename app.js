@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
+const mysqlStore= require('express-mysql-session')(session);
+const dbOption = require('./models/Option_DB.js');
 
 const inquireRouter=require('./routes/Inquire_Router.js')
 const joinRouter=require('./routes/join_Router.js');
@@ -11,7 +13,7 @@ const loginRouter=require('./routes/login_Router.js');
 const reservateionRouter=require('./routes/reservation_Router.js');
 
 const app = express();
-
+const sessionStore= new mysqlStore(dbOption);
 
 require('dotenv').config();
 // view engine setup
@@ -34,7 +36,9 @@ app.use(session({  // app.use로 설정하면 사용자 요청이 있을 때 마
                 //resave: 요청이 왔을 때 세션에 수정사항이 생기지 않더라도 세션을 다시 저장할지에 대한 설정
   saveUninitialized:true, //세션이 필요하기 전까지 세션을 구동하지 않는다.(true)  세션이 필요하건 안필요하건 무조건 구동시킨다(false)(서버에 큰부담음줌)
                   //세션에 저장할 내역이 없더라도 세션을 저장할지에 대한 설정(보통 방문자 추적할때 사용)
-  maxAge:10//세션 유효기간 제대로 설정해야함 ㅠㅠ
+  
+  store:sessionStore
+                  //maxAge:10//세션 유효기간 제대로 설정해야함 ㅠㅠ
 }));
 
 

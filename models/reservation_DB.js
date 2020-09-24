@@ -1,11 +1,8 @@
-const express = require('express');
 const mysql =require('mysql');
-const dbOption = require('../models/Option_DB');
-
-const router=express.Router();
+const dbOption = require('./Option_DB');
 
 
-router.get('/',(req,res)=>{
+function getGroundList(){
     const dbCon = mysql.createConnection(dbOption);
 
     dbCon.connect((err)=>{
@@ -28,17 +25,13 @@ router.get('/',(req,res)=>{
             //console.log(data);
                     
         }
-        console.log(data);
+        console.log(data.length);
         
         
         dbCon.end();
-        console.log(data[0].ground_img_name);
-        res.render('reservation',{id:'',groundList:data});
+      
     });
- });
-
-
-
-
-
- module.exports=router;
+}
+module.exports={
+    getGroundList
+}

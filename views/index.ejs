@@ -15,13 +15,13 @@
                 <h2 id="home"><a href=>M9SOCCER</a></h2>
                 <nav>
                     <ul>
-                        <li class="menu"><a href>홈</a></li>
-                        <li class="menu"><a href>운동자 예약</a></li>
+                        <li class="menu"><a href="/">홈</a></li>
+                        <li class="menu"><a href="/reservation">운동자 예약</a></li>
                         <li class="menu"><a href>커뮤니티</a></li>
                     </ul>
                 </nav>
                 <% if(id!==''){ %>
-                    <h2 id="sucessLogin"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
+                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
                 <% } else{%>   
                     <h2 id="login"><a href='/login'>로그인</a></h2>
                 <% }%>
@@ -38,6 +38,7 @@
             </div>
         </article>
         <div id="community_wrap">
+           <!-- <img src="images/home_community.jpg" id="communityImg">-->
             <img src="images/home_community.jpg" id="communityImg">
             <div id="communityText">
                 <h2>
