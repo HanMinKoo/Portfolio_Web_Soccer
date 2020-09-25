@@ -6,35 +6,42 @@ const router=express.Router();
 
 
 router.get('/',(req,res)=>{
-    const dbCon = mysql.createConnection(dbOption);
+    console.log(req.query.number);
+    if(req.query.number==='1')
+        res.render('reservation_table');
 
-    dbCon.connect((err)=>{
-        if(err!==null)
-            console.log(`Error: DB Connect fail: ` ,err);
-        else
-            console.log('DB Connect Success');
-    });
+    else if(req.query.number===undefined){
+        const dbCon = mysql.createConnection(dbOption);
+        
 
-    const query= `select * from web_portfolio1.ground_list`;
+        dbCon.connect((err)=>{
+            if(err!==null)
+                console.log(`Error: DB Connect fail: ` ,err);
+            else
+                console.log('DB Connect Success');
+        });
+
+        const query= `select * from web_portfolio1.ground_list`;
 
 
-    dbCon.query(query, (err,data)=>{
-        if(err){
-            console.log('table name:ground_list / Error: select query Error : ',err);
-            //console.log(data); //undefined
-        }
-        else{
-            console.log('table name:ground_list / Result: query Success');
+        dbCon.query(query, (err,data)=>{
+            if(err){
+                console.log('table name:ground_list / Error: select query Error : ',err);
+                //console.log(data); //undefined
+            }
+            else{
+                console.log('table name:ground_list / Result: query Success');
+                //console.log(data);
+                        
+            }
             //console.log(data);
-                    
-        }
-        console.log(data);
+            
+            
+            dbCon.end();
         
-        
-        dbCon.end();
-        console.log(data[0].ground_img_name);
-        res.render('reservation',{id:'',groundList:data});
-    });
+            res.render('reservation',{id:'',groundList:data});
+        });
+    }
  });
 
 
