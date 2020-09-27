@@ -27,12 +27,12 @@ router.post('/process',(req,res)=>{
         console.log(key.toString('base64'));
         password=key.toString('base64');
         id=req.body.email;
-        userLoginDb.loginUser(req.body.email,password,setLoginResult);
+        userLoginDb.loginUser(req.body.email,password,authCheck);
       
     });
 
 
-    function setLoginResult(result){
+    function authCheck(result,userName){
         console.log("result:",result);
         
 
@@ -44,19 +44,16 @@ router.post('/process',(req,res)=>{
         }
         else //result ==='success'
         {
-            
-            console.log("email id:",id);
-            req.session.email=id;
-            console.log("req.session.email:",req.session.email);
+            req.session.isLogined=true;
+            req.session.userName=userName.user_name;
+    
             console.log("req.session",req.session);
             req.session.save(()=>{
                 console.log('session save success');
                 res.redirect('/');
-            });
-            
+            });  
         }
     }
-    
  });
 
  module.exports=router;

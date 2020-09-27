@@ -15,6 +15,7 @@ function loginUser(userEmail, userPassword,callback){
 
 
     dbCon.query(query, (err,data)=>{
+        let userName;
         if(err){
             console.log('table name:user / Error: select query Error : ',err);
             console.log(data); //undefined
@@ -23,12 +24,12 @@ function loginUser(userEmail, userPassword,callback){
             console.log('table name:user / Result: query Success');
             
             console.log(data[0]); //undefined면
-            
+            userName=data[0]
         }
         if(data[0]===undefined) //해당 email password를 쿼리로 못찾았을 경우
             callback('fail'); 
         else{
-          callback('success');
+          callback('success',userName);
         }
         
         dbCon.end();

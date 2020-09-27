@@ -37,27 +37,21 @@ app.use(session({  // app.use로 설정하면 사용자 요청이 있을 때 마
   saveUninitialized:true, //세션이 필요하기 전까지 세션을 구동하지 않는다.(true)  세션이 필요하건 안필요하건 무조건 구동시킨다(false)(서버에 큰부담음줌)
                   //세션에 저장할 내역이 없더라도 세션을 저장할지에 대한 설정(보통 방문자 추적할때 사용)
   
-  store:sessionStore
-                  //maxAge:10//세션 유효기간 제대로 설정해야함 ㅠㅠ
+  store:sessionStore,
+  cookie:{maxAge:6000000} ///1000분의 1초
 }));
 
-
-
 app.get('/',(req,res,next)=>{
-  if(req.session.email!==undefined){
-    res.render('index',{id:req.session.email});//req.session.id 는 session의 기본값으로써 session객체를 console로 출력해도 안뜸.
-                                                //보안때문에 그런듯
-    //나 세션 유지 안시켰는데 자동으로 되네 왜; ==>서버 껐다키면 세션풀림. 그래서 세션을 db에 저장시켜놓나봄
-  }
-  else
-    res.render('index',{id:''});
+  console.log(req.session.userName);
+  return ((req.session.userName!==undefined)? res.render('index',{id:req.session.userName}) :res.render('index',{id:''}));
+//db에 session이 저장되어있으면 서버 껐다켜도 세션 안풀림. 
 });
 app.use('/login',loginRouter);
 app.get('/logout',(req,res)=>{
     req.session.destroy((err)=>{ //세션을 완전히 삭제, 완전히 세션을 삭제했으니 브라우저가 다음에 웹에 접근할 때 다시 세션 발급됨.
       console.log(`session destroy err: `,err);
+      res.redirect('/');
     }); 
-    res.redirect('/');
 });
 app.use('/join',joinRouter);
 app.use('/inquire',inquireRouter);

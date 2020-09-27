@@ -6,7 +6,24 @@
         
     </head>
     <body>
-       
+        <header id="m9Head">
+            <div id="wrap_head">
+                
+                <h2 id="home"><a href=>M9SOCCER</a></h2>
+                <nav>
+                    <ul>
+                        <li class="menu"><a href="/">홈</a></li>
+                        <li class="menu"><a href="/reservation">운동자 예약</a></li>
+                        <li class="menu"><a href>커뮤니티</a></li>
+                    </ul>
+                </nav>
+                <% if(id!==''){ %>
+                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
+                <% } else{%>   
+                    <h2 id="login"><a href='/login'>로그인</a></h2>
+                <% }%>
+            </div>
+        </header>
         <div class="container">
             <div class="my-calendar clearfix">
                 <div class="clicked-date">

@@ -1,7 +1,7 @@
 const mysql =require('mysql');
 const dbOption = require('./Option_DB');
 
-function saveUser(userName, userEmail, userPassword){
+function saveUser(userName, userEmail, userPassword,response){
     const dbCon = mysql.createConnection(dbOption);
     dbCon.connect((err)=>{
         if(err!==null)
@@ -20,7 +20,7 @@ function saveUser(userName, userEmail, userPassword){
         else{
             console.log('table name:user / Result: insert Success');
             console.log(data);
-            
+            response.redirect('/');
         }
         dbCon.end();
     });
