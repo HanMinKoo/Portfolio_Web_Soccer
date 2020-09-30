@@ -16,6 +16,11 @@ function join_Progress(){
         form.userPassword2.focus();
         return;
     }
+    else if(form.userId.value===''){
+        alert("아이디를 입력해주세요.");
+        form.userId.focus();
+        return;
+    }
     form.submit(); 
 }
 
@@ -23,9 +28,9 @@ function join_Progress(){
 function processLogin(){
     const form=document.login_form;
 
-    if(form.email.value===''){
-        alert("이메일을 입력해주세요.");
-        form.email.focus();
+    if(form.id.value===''){
+        alert("아이디를 입력해주세요.");
+        form.id.focus();
         return;
     }
     else if(form.password.value===''){

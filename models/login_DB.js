@@ -1,7 +1,8 @@
 const mysql =require('mysql');
 const dbOption = require('./Option_DB');
-
-function loginUser(userEmail, userPassword,callback){
+const dbTest= require('./test_db');
+function loginUser(userId, userPassword,callback){
+   // let dbCon=dbTest.connectDB();
     const dbCon = mysql.createConnection(dbOption);
 
     dbCon.connect((err)=>{
@@ -11,27 +12,23 @@ function loginUser(userEmail, userPassword,callback){
             console.log('DB Connect Success');
     });
 
-    const query= `select user_name from web_portfolio1.user where user_email='${userEmail}' and user_password='${userPassword}'`;
-
-
+    const query= `select user_id from web_portfolio1.user where user_id='${userId}' and user_password='${userPassword}'`;
     dbCon.query(query, (err,data)=>{
-        let userName;
+        
         if(err){
             console.log('table name:user / Error: select query Error : ',err);
             console.log(data); //undefined
         }
         else{
             console.log('table name:user / Result: query Success');
-            
-            console.log(data[0]); //undefined면
-            userName=data[0]
+            console.log("asdasdasdasd",data[0]); //undefined면
+          
         }
-        if(data[0]===undefined) //해당 email password를 쿼리로 못찾았을 경우
+        if(data[0]===undefined) //db에서 id password를 쿼리로 못찾았을 경우
             callback('fail'); 
-        else{
-          callback('success',userName);
-        }
-        
+        else
+          callback('success',data[0].user_id);
+
         dbCon.end();
     });
 }

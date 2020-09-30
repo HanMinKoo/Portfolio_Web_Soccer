@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="stylesheets/reservation_detail.css">
+        <script defer src="javascripts/reservation_detail.js"></script>
+   
+    </head>
+    <body>
+        <header id="m9Head">
+            <div id="wrap_head">
+                
+                <h2 id="home"><a href=>M9SOCCER</a></h2>
+                <nav>
+                    <ul>
+                        <li class="menu"><a href="/">홈</a></li>
+                        <li class="menu"><a href="/reservation">운동자 예약</a></li>
+                        <li class="menu"><a href>커뮤니티</a></li>
+                    </ul>
+                </nav>
+                <% if(id!==''){ %>
+                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
+                <% } else{%>   
+                    <h2 id="login"><a href='/login'>로그인</a></h2>
+                <% }%>
+            </div>
+        </header>
+        <div id="body_wrap">
+            <h2>한림대 대운동장</h2>
+            <h3>가격:<%=groundList.ground_price%></h3>
+            <img src="images/groundImg/<%=groundList.ground_img_path%>/<%=groundList.ground_img_name%>" id='groundImg' >
+            
+ 
+
+            <div id="calendar_wrap">
+                
+                <form action="/reservation/process" method="get" id="formId" name="calendarForm">
+                    <h3>날짜 선택</h3>
+                    <select id="year" name ="year" onchange="chanegeCalendar()">
+                        <option value="2020" selected>2020년</option>
+                        <option value="2021" >2021년</option>
+                    </select>
+
+                    <select id="month" name ="month" onchange="chanegeCalendar()">
+                        <option value="10" selected>10월</option>
+                        <option value="11" >11월</option>
+                        <option value="12" >12월</option>
+                    </select>
+
+
+                    <select id="day" name ="day" onchange="chanegeCalendar()">
+                        <option value="1" selected>1일</option>
+                        <option value="2" >2일</option>
+                        <option value="3" >3일</option>
+                        <option value="4" >4일</option>
+                        <option value="5" >5일</option>
+                        <option value="6" >6일</option>
+                        <option value="7" >7일</option>
+                        <option value="8" >8일</option>
+                        <option value="9" >9일</option>
+                        <option value="10" >10일</option>
+                        <option value="11" >11일</option>
+                        <option value="12" >12일</option>
+                        <option value="13" >13일</option>
+                        <option value="14" >14일</option>
+                        <option value="15" >15일</option>
+                        <option value="16" >16일</option>
+                        <option value="17" >20일</option>
+                        <option value="21" >21일</option>
+                        <option value="22" >22일</option>
+                        <option value="23" >23일</option>
+                        <option value="24" >25일</option>
+                        <option value="26" >26일</option>
+                        <option value="27" >27일</option>
+                        <option value="28" >28일</option>
+                        <option value="29" >29일</option>
+                        <option value="30" >30일</option>
+                        <option value="31" >31일</option>
+                    </select>
+
+                    <p id="timeTable"> 
+                            <!--한줄에 time 3개씩 출력-->
+                        <table >
+                                <h3 >시간 선택</h3>
+                                
+                                <%for(let j=0; j<groundTimeTable.length; j++){%>
+                                    <%if(j%3===0){%> <!--3개 채운 후 새로운 줄(tr) 추가 또는 처음 시작 tr 추가-->
+                                        <tr >
+                                    <%}%>
+                                            <td >
+                                                    
+                                                <label> <%=groundTimeTable[j].ground_time%>                           
+                                                    <input type="radio" name="groundTime" value=<%=groundTimeTable[j].ground_time%>>
+                                                </label>
+                                                
+                                            </td>
+                                    <%if((j===groundTimeTable.length-1) || ((j%3===2) && (j!==0)) ){%> <!--length 마지막에 /tr닫기 또는 한줄 다 3개 채운후(0,1,2)-->
+                                        </tr><!--j%3===2인 이유는 배열 인덱스0부터 시작해서 0,1,2 나머지가 이렇게 반복. j가 2일때, 5일때, 8일때 3개씩 다 찾으니깐 /tr-->
+                                    <%}%>    
+                                <%}%>
+                                                               
+                        </table>
+                        <button type= "button" id="reservationBtn" onclick="chanegeCalendar();">예약하기</button>
+                    </p>
+                </form>
+                
+            </div>
+        </div>
+        <!-- 
+        <div class="container">
+            <div class="my-calendar clearfix">
+                <div class="clicked-date">
+                    <div class="cal-day"></div>
+                    <div class="cal-date"></div>
+                </div>
+                <div class="calendar-box">
+                    <div class="ctr-box clearfix">
+                        <button type="button" title="prev" class="btn-cal prev">
+                        </button>
+                        <span class="cal-month"></span>
+                        <span class="cal-year"></span>
+                        <button type="button" title="next" class="btn-cal next">
+                        </button>
+                    </div>
+                    <table class="cal-table">
+                        <thead>
+                            <tr>
+                                <th>S</th>
+                                <th>M</th>
+                                <th>T</th>
+                                <th>W</th>
+                                <th>T</th>
+                                <th>F</th>
+                                <th>S</th>
+                            </tr>
+                        </thead>
+                        <tbody class="cal-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        -->
+
+        
+    </body>
+
+</html>
+

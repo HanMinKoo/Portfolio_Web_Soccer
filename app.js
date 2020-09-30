@@ -42,8 +42,8 @@ app.use(session({  // app.use로 설정하면 사용자 요청이 있을 때 마
 }));
 
 app.get('/',(req,res,next)=>{
-  console.log(req.session.userName);
-  return ((req.session.userName!==undefined)? res.render('index',{id:req.session.userName}) :res.render('index',{id:''}));
+  console.log(req.session.userId);
+  return ((req.session.userId!==undefined)? res.render('index',{id:req.session.userId}) :res.render('index',{id:''}));
 //db에 session이 저장되어있으면 서버 껐다켜도 세션 안풀림. 
 });
 app.use('/login',loginRouter);

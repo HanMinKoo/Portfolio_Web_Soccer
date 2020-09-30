@@ -1,0 +1,93 @@
+html, body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+  float: none;
+}
+
+
+a{text-decoration: none; color:black;}
+
+/* header 관련: 메뉴, 홈, 로그인  */
+#m9Head{
+    position: fixed;
+    top:0;
+    background-color: white;
+    width:100%;
+    min-width:1200px;
+    height:60px;
+    z-index: 1;
+   
+}
+#wrap_head{
+    height:60px;
+    width: 1200px;
+    margin:0 auto;
+    text-align: center;
+   
+}
+#wrap_head ul ,#home {
+    float:left;
+    margin-right:20%;
+}
+#wrap_head ul li{
+    display:inline;
+    font-size:1.5em;
+    margin-right:80px;
+}
+#login{
+    float:left;
+}
+#sucessLogin{
+    float:right;
+}
+
+#body_wrap{
+  width:1200px;
+  height:600px;
+  margin:0 auto;
+ 
+}
+#body_wrap{
+  margin-top: 15%;
+}
+#groundImg{
+  width:700px;
+  height:400px;
+  float:left;
+}
+#calendar_wrap{
+  float:left;
+  
+  margin-left: 5%;
+  
+  
+}
+
+
+#timeTable{
+  border:1px solid black;
+  margin-top: 3%;
+}
+#timeTable>table{
+  border:3px solid red;
+}
+
+#reservationBtn{
+  background-color:  rgb(34, 143, 83);
+  color:white;
+  font-size: 1em; 
+  border-radius: 10px;
+  margin-top:30%;
+  width: 200px;
+  height: 50px;
+}

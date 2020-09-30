@@ -26,13 +26,13 @@ router.post('/process',(req,res)=>{
     crypto.pbkdf2(req.body.password,'m9m9',8080,64,'sha512',(err,key)=>{
         console.log(key.toString('base64'));
         password=key.toString('base64');
-        id=req.body.email;
-        userLoginDb.loginUser(req.body.email,password,authCheck);
+        id=req.body.id;
+        userLoginDb.loginUser(req.body.id,password,authCheck);
       
     });
 
 
-    function authCheck(result,userName){
+    function authCheck(result,userId){
         console.log("result:",result);
         
 
@@ -45,7 +45,7 @@ router.post('/process',(req,res)=>{
         else //result ==='success'
         {
             req.session.isLogined=true;
-            req.session.userName=userName.user_name;
+            req.session.userId=userId;
     
             console.log("req.session",req.session);
             req.session.save(()=>{
