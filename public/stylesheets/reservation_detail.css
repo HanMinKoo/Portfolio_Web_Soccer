@@ -91,3 +91,6 @@ a{text-decoration: none; color:black;}
   width: 200px;
   height: 50px;
 }
+#groundNumber{
+ display:none;
+}

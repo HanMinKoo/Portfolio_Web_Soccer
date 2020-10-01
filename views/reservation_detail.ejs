@@ -33,7 +33,7 @@
  
 
             <div id="calendar_wrap">
-                
+                <!--"/reservation/:number/process"-->
                 <form action="/reservation/process" method="get" id="formId" name="calendarForm">
                     <h3>날짜 선택</h3>
                     <select id="year" name ="year" onchange="chanegeCalendar()">
@@ -77,7 +77,7 @@
                         <option value="30" >30일</option>
                         <option value="31" >31일</option>
                     </select>
-
+                    
                     <p id="timeTable"> 
                             <!--한줄에 time 3개씩 출력-->
                         <table >
@@ -98,8 +98,9 @@
                                         </tr><!--j%3===2인 이유는 배열 인덱스0부터 시작해서 0,1,2 나머지가 이렇게 반복. j가 2일때, 5일때, 8일때 3개씩 다 찾으니깐 /tr-->
                                     <%}%>    
                                 <%}%>
-                                                               
+                                                       
                         </table>
+                        <input id="groundNumber" type="radio" name="groundNumber" value=<%=groundList.ground_number%> checked >
                         <button type= "button" id="reservationBtn" onclick="chanegeCalendar();">예약하기</button>
                     </p>
                 </form>
