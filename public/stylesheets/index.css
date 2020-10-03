@@ -29,12 +29,13 @@ a{text-decoration: none; color:black;}
     width: 1200px;
     margin:0 auto;
     text-align: center;
-    border:3px solid black;
+ 
  
 }
 #wrap_head ul ,#home {
     float:left;
     margin-right:20%;
+  
     
 }
 #wrap_head ul li{
@@ -45,13 +46,12 @@ a{text-decoration: none; color:black;}
 }
 #login{
     float:left;
+  
+    font-size: 20px;
+    margin-left: -10%;
     
 }
-#sucessLogin{
-    float:right;
-    border:3px solid red;
- 
-}
+
 
 
 

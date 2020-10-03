@@ -28,6 +28,9 @@ module.exports = {
 	password : process.env.DB_PASSWORD,
 	port	:process.env.DB_PORT,
 	database	:process.env.DB_DATABASE,
+	connector: "mysql",
+	connectTimeout: 20000,
+    acquireTimeout: 20000
 };
 
 

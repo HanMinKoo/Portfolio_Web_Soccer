@@ -30,10 +30,8 @@
             <h3>가격:<%=groundList.ground_price%></h3>
             <img src="images/groundImg/<%=groundList.ground_img_path%>/<%=groundList.ground_img_name%>" id='groundImg' >
             
- 
-
             <div id="calendar_wrap">
-                <!--"/reservation/:number/process"-->
+              
                 <form action="/reservation/process" method="get" id="formId" name="calendarForm">
                     <h3>날짜 선택</h3>
                     <select id="year" name ="year" onchange="chanegeCalendar()">
@@ -98,51 +96,21 @@
                                         </tr><!--j%3===2인 이유는 배열 인덱스0부터 시작해서 0,1,2 나머지가 이렇게 반복. j가 2일때, 5일때, 8일때 3개씩 다 찾으니깐 /tr-->
                                     <%}%>    
                                 <%}%>
-                                                       
+                                        
+                        
                         </table>
+                        <h3>예약 불가 시간대</h3>
+                        <%for(let j=0; j<reservationList.length; j++){%>
+                            <h4><%=reservationList[j].ground_use_time%>,&nbsp</h4>>
+                        <%}%>
+                        
                         <input id="groundNumber" type="radio" name="groundNumber" value=<%=groundList.ground_number%> checked >
                         <button type= "button" id="reservationBtn" onclick="chanegeCalendar();">예약하기</button>
                     </p>
                 </form>
                 
             </div>
-        </div>
-        <!-- 
-        <div class="container">
-            <div class="my-calendar clearfix">
-                <div class="clicked-date">
-                    <div class="cal-day"></div>
-                    <div class="cal-date"></div>
-                </div>
-                <div class="calendar-box">
-                    <div class="ctr-box clearfix">
-                        <button type="button" title="prev" class="btn-cal prev">
-                        </button>
-                        <span class="cal-month"></span>
-                        <span class="cal-year"></span>
-                        <button type="button" title="next" class="btn-cal next">
-                        </button>
-                    </div>
-                    <table class="cal-table">
-                        <thead>
-                            <tr>
-                                <th>S</th>
-                                <th>M</th>
-                                <th>T</th>
-                                <th>W</th>
-                                <th>T</th>
-                                <th>F</th>
-                                <th>S</th>
-                            </tr>
-                        </thead>
-                        <tbody class="cal-body"></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        -->
-
-        
+        </div>        
     </body>
 
 </html>

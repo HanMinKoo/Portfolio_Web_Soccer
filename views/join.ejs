@@ -3,6 +3,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="stylesheets/join.css">
+        <script defer src="javascripts/joinAndLogin.js"></script>
+
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            
         
     </head>
     <body>
@@ -19,10 +24,13 @@
             
                 <input type="email" name="userEmail">
 
+                
                 <label>아이디</label>
-                <button type="submit" id="duplicationChk">중복체크</button>
-            
-                <input type="text" name="userId">
+                <button type="button" onclick="checkID();" id="duplicationChk">중복체크</button>
+                
+                
+                <input type="text" name="userId" id="userId">
+                <div class="check_font" id="id_check"></div>
         
                 <label>비밀번호</label>
                 
@@ -42,6 +50,29 @@
             
         </div>
     </body>
-    <script type="text/javascript" src="javascripts/joinAndLogin.js"></script>
+    <script>
+        function checkID(){
+            const id=$("#userId").val();
+
+            const data={userID:id};
+            if(data.userID === ''){ //id 비 입력시 예외처리
+                alert('ID를 입력해주세요.');
+                return;
+            }
+        
+            $.ajax({
+                url: "/join/checkid",
+                type: 'POST',
+                data: data,
+                success: function (data) {
+                    (data==='1') ? alert('사용 가능한 ID입니다.'):alert('이미 존재하는 ID입니다.');
+                    
+                },
+                error: function (xhr, status) {
+                    alert(xhr + " : " + status);
+                }
+            });
+        }
+    </script>
     
 </html>

@@ -24,7 +24,6 @@ function join_Progress(){
     form.submit(); 
 }
 
-
 function processLogin(){
     const form=document.login_form;
 
