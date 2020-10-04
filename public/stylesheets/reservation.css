@@ -10,27 +10,34 @@
     min-width:1200px;
     height:60px;
     z-index: 1;
+  
 }
 #wrap_head{
     height:60px;
     width: 1200px;
     margin:0 auto;
     text-align: center;
+ 
+ 
 }
 #wrap_head ul ,#home {
     float:left;
     margin-right:20%;
+  
+    
 }
 #wrap_head ul li{
     display:inline;
     font-size:1.5em;
-    margin-right:80px;
+    
+    margin-right:100px;
 }
 #login{
-    float:left;
-}
-#sucessLogin{
     float:right;
+  
+    font-size: 20px;
+    margin-left: 0%;
+    
 }
 
 
@@ -47,7 +54,7 @@
     background-color: white;
     margin:0 auto;
     margin-top:5%;
-    border:1px solid red;
+    
 }
 #groundList_wrap h1{
     font-size: 2em;

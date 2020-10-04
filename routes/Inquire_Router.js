@@ -1,7 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 
-const inquireDb= require('../models/Inquire_DB');
+const inquireDB= require('../models/Inquire_DB');
 
 const router = express.Router();
 require('dotenv').config();
@@ -40,7 +40,7 @@ router.post('/', (req, res, next)=> {
         }
         else{
             console.log('Email sent Success: ' , info.response);
-            inquireDb.save(userName,phoneNumber,content,infoCheck);  
+            inquireDB.save(userName,phoneNumber,content,infoCheck);  
             transporter.close();
         }
     });

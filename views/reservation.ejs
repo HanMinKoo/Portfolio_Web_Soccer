@@ -13,8 +13,8 @@
                 <nav>
                     <ul>
                         <li class="menu"><a href="/">홈</a></li>
-                        <li class="menu"><a href="/reservation">운동자 예약</a></li>
-                        <li class="menu"><a href>커뮤니티</a></li>
+                        <li class="menu"><a href="/reservation">운동장 예약</a></li>
+                       <!-- <li class="menu"><a href>커뮤니티</a></li>-->
                     </ul>
                 </nav>
                 <% if(id!==''){ %>
@@ -29,13 +29,13 @@
                     <h1>운동장 리스트</h1>
                     <% for(let i=0; i<groundList.length; i++){%>  
 
-                        <button class="groundListBtn" onclick="window.location.href='http://localhost/reservation?number=<%=groundList[i].ground_number%>'">
-                            <img class="groundImg" src="images/groundImg/<%=groundList[i].ground_img_path%>/<%=groundList[i].ground_img_name%>">
+                        <button class="groundListBtn" onclick="window.location.href='http://localhost/reservation?number=<%=groundList[i].id%>'">
+                            <img class="groundImg" src="images/groundImg/<%=groundList[i].img_directory_path%>/<%=groundList[i].img_name%>">
                             <h2 class="groundName"><%=groundList[i].ground_name%></h2>
                             <ul>
-                                <li class="groundInfo"><h3>이용 시간: <%=groundList[i].ground_use_time%></h3></li>
-                                <li class="groundInfo"><h3>위치: <%=groundList[i].ground_location%></h3></li>
-                                <li class="groundInfo"><h3>가격: <%=groundList[i].ground_price%></h3></li>   
+                                <li class="groundInfo"><h3>이용 시간: <%=groundList[i].use_time%></h3></li>
+                                <li class="groundInfo"><h3>위치: <%=groundList[i].location%></h3></li>
+                                <li class="groundInfo"><h3>가격: <%=groundList[i].price%></h3></li>   
                             </ul>
                         </button>
                         

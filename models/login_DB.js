@@ -12,7 +12,7 @@ function loginUser(userId, userPassword,callback){
             console.log('DB Connect Success');
     });
 
-    const query= `select user_id from web_portfolio1.user where user_id='${userId}' and user_password='${userPassword}'`;
+    const query= `select account from web_portfolio1.user where account='${userId}' and password='${userPassword}'`;
     dbCon.query(query, (err,data)=>{
         
         if(err){
@@ -27,7 +27,7 @@ function loginUser(userId, userPassword,callback){
         if(data[0]===undefined) //db에서 id password를 쿼리로 못찾았을 경우
             callback('fail'); 
         else
-          callback('success',data[0].user_id);
+          callback('success',data[0].account);
 
         dbCon.end();
     });

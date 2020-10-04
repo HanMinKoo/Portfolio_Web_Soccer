@@ -11,7 +11,7 @@ function saveUser(userName, userEmail, userPassword,response,userId){
             console.log('DB Connect Success');
     });
 
-    const query= `INSERT INTO web_portfolio1.user(user_id,user_name, user_email,user_password) 
+    const query= `INSERT INTO web_portfolio1.user(account, name, email, password) 
     VALUES('${userId}','${userName}', '${userEmail}', '${userPassword}')`;
 
     dbCon.query(query, function(err,data){

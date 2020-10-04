@@ -4,6 +4,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="stylesheets/reservation_detail.css">
         <script defer src="javascripts/reservation_detail.js"></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
    
     </head>
     <body>
@@ -14,8 +16,8 @@
                 <nav>
                     <ul>
                         <li class="menu"><a href="/">홈</a></li>
-                        <li class="menu"><a href="/reservation">운동자 예약</a></li>
-                        <li class="menu"><a href>커뮤니티</a></li>
+                        <li class="menu"><a href="/reservation">운동장 예약</a></li>
+                      <!--  <li class="menu"><a href>커뮤니티</a></li>-->
                     </ul>
                 </nav>
                 <% if(id!==''){ %>
@@ -26,28 +28,32 @@
             </div>
         </header>
         <div id="body_wrap">
-            <h2>한림대 대운동장</h2>
-            <h3>가격:<%=groundList.ground_price%></h3>
-            <img src="images/groundImg/<%=groundList.ground_img_path%>/<%=groundList.ground_img_name%>" id='groundImg' >
+            <h2><%=groundList.name%></h2>
+            <h3>가격:<%=groundList.price%></h3>
+            <img src="images/groundImg/<%=groundList.img_directory_path%>/<%=groundList.img_name%>" id='groundImg' >
             
             <div id="calendar_wrap">
               
-                <form action="/reservation/process" method="get" id="formId" name="calendarForm">
+                <form action="/reservation/process" method="post" id="formId" name="calendarForm">
                     <h3>날짜 선택</h3>
                     <select id="year" name ="year" onchange="chanegeCalendar()">
-                        <option value="2020" selected>2020년</option>
-                        <option value="2021" >2021년</option>
+                       
+                        <option value="2020" >2020</option>
+                        <option value="2021" >2021</option>
                     </select>
+                    <strong>년</strong>
 
                     <select id="month" name ="month" onchange="chanegeCalendar()">
-                        <option value="10" selected>10월</option>
-                        <option value="11" >11월</option>
-                        <option value="12" >12월</option>
+                      
+                        <option value="10" >10</option>
+                        <option value="11" >11</option>
+                        <option value="12" >12</option>
                     </select>
-
+                    <strong>월</strong>
 
                     <select id="day" name ="day" onchange="chanegeCalendar()">
-                        <option value="1" selected>1일</option>
+                        <option value="선택" >선택</option>
+                        <option value="1" >1일</option>
                         <option value="2" >2일</option>
                         <option value="3" >3일</option>
                         <option value="4" >4일</option>
@@ -75,6 +81,7 @@
                         <option value="30" >30일</option>
                         <option value="31" >31일</option>
                     </select>
+                    <strong>일</strong
                     
                     <p id="timeTable"> 
                             <!--한줄에 time 3개씩 출력-->
@@ -83,7 +90,7 @@
                                 
                                 <%for(let j=0; j<groundTimeTable.length; j++){%>
                                     <%if(j%3===0){%> <!--3개 채운 후 새로운 줄(tr) 추가 또는 처음 시작 tr 추가-->
-                                        <tr >
+                                        <tr>
                                     <%}%>
                                             <td >
                                                     
@@ -99,19 +106,57 @@
                                         
                         
                         </table>
-                        <h3>예약 불가 시간대</h3>
-                        <%for(let j=0; j<reservationList.length; j++){%>
-                            <h4><%=reservationList[j].ground_use_time%>,&nbsp</h4>>
-                        <%}%>
                         
-                        <input id="groundNumber" type="radio" name="groundNumber" value=<%=groundList.ground_number%> checked >
-                        <button type= "button" id="reservationBtn" onclick="chanegeCalendar();">예약하기</button>
+                        <h3>예약 불가 시간대(시작 시간 기준)</h3>
+                        <div id='ImpossibleTime'></div>
+                        
+                       
+                        
+                        <input id="groundNumber" type="radio" name="ground_id" value=<%=groundList.id%> checked >
+                        <button type= "button" id="reservationBtn" onclick="submitReservationInfo();">예약하기</button>
                     </p>
                 </form>
                 
             </div>
         </div>        
     </body>
-
+    <script>
+        function chanegeCalendar(){
+            const year=$("#year").val();
+            const month=$("#month").val();
+            const day=$("#day").val();
+            const ground_id= $("#groundNumber").val();
+           
+            if(year==='선택'|| month==='선택'|| day==='선택')
+            {
+                alert('날짜를 선택하세요.');
+                return;
+            }
+            const data={
+                year:year,
+                month:month,
+                day:day,
+                ground_id:ground_id
+            };
+            
+        
+            $.ajax({
+                url: "/reservation/process",
+                type: 'post',
+                data: data,
+                success: function (data) {
+                    const div=document.getElementById('ImpossibleTime');
+                    let text='';
+                    for(let i=0; i<data.length; i++)
+                        text+=data[i].time+", ";  //가능 시간대 문자열로 가공
+                 
+                    div.innerHTML=`<strong>${text}</strong>`;     
+                },
+                error: function (xhr, status) {
+                    alert(xhr + " : " + status);
+                }
+            });
+        }
+    </script>
 </html>
 

@@ -42,13 +42,13 @@ a{text-decoration: none; color:black;}
     display:inline;
     font-size:1.5em;
     
-    margin-right:80px;
+    margin-right:100px;
 }
 #login{
-    float:left;
+    float:right;
   
     font-size: 20px;
-    margin-left: -10%;
+    margin-left: 0%;
     
 }
 

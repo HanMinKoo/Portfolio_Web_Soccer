@@ -1,4 +1,4 @@
-function chanegeCalendar(){
+function submitReservationInfo(){
     const form=document.calendarForm;
 
   

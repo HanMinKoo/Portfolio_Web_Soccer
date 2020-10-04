@@ -23,7 +23,7 @@ router.post('/checkid',(req,res)=>{
             console.log('DB Connect Success');
     });
 
-    let query=`select * from web_portfolio1.user where user_id='${req.body.userID}'`;
+    let query=`select * from web_portfolio1.user where account='${req.body.userID}'`;
 
     dbCon.query(query, (err,userInfo)=>{
         if(err)
