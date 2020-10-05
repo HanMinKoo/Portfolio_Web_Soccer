@@ -1,3 +1,5 @@
+
+/******회원가입 공백, 비밀번호 일치 예외처리 ******/
 function join_Progress(){
     const form=document.join_form;
 
@@ -21,8 +23,15 @@ function join_Progress(){
         form.userId.focus();
         return;
     }
+    else if(form.userPassword1.value!==form.userPassword2.value){
+        alert("비밀번호를 일치시켜주세요.");
+        form.userPassword2.focus();
+        return;
+    }
     form.submit(); 
 }
+
+
 
 function processLogin(){
     const form=document.login_form;
