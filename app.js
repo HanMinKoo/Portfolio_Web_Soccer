@@ -1,3 +1,4 @@
+/*****모듈 변수 설정*****/
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -5,15 +6,26 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const mysqlStore= require('express-mysql-session')(session);
-const dbOption = require('./models/Option_DB.js');
 
+
+
+/*****Router 변수 설정*****/
 const inquireRouter=require('./routes/Inquire_Router.js')
 const joinRouter=require('./routes/join_Router.js');
 const loginRouter=require('./routes/login_Router.js');
 const reservateionRouter=require('./routes/reservation_RouterAndDB.js');
+const myPageRouter=require('./routes/mypage_RouterAndDB.js');
+const adminPageRouter=require('./routes/admingpage_RouterAndDB.js');
 
 const app = express();
-const sessionStore= new mysqlStore(dbOption);
+const sessionStore= new mysqlStore
+({
+  host: process.env.DB_IP,
+  user: process.env.DB_USER,
+  password : process.env.DB_PASSWORD,
+  port	:process.env.DB_PORT,
+  database	:process.env.DB_DATABASE,
+});
 
 require('dotenv').config();
 // view engine setup
@@ -49,9 +61,8 @@ app.get('/logout',(req,res)=>{
 app.use('/join',joinRouter);
 app.use('/inquire',inquireRouter);
 app.use('/reservation',reservateionRouter);
-
-
-
+app.use('/mypage',myPageRouter);
+app.use('/adminpage',adminPageRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));

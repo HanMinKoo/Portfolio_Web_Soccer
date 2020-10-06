@@ -1,6 +1,6 @@
 
-/******회원가입 공백, 비밀번호 일치 예외처리 ******/
-function join_Progress(){
+/******회원가입 예외처리 ******/
+function examineExceptionJoin(){
     const form=document.join_form;
 
     if(form.userName.value===''){
@@ -32,8 +32,8 @@ function join_Progress(){
 }
 
 
-
-function processLogin(){
+/*****로그인 예외처리*****/
+function examineExceptionLogin(){
     const form=document.login_form;
 
     if(form.id.value===''){

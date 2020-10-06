@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="stylesheets/login.css">
+        <script defer type="text/javascript" src="javascripts/joinAndLogin.js"></script>
     </head>
     <body>
         <header id="m9Head">
@@ -13,7 +14,7 @@
                     <ul>
                         <li class="menu"><a href="/">홈</a></li>
                         <li class="menu"><a href>운동자 예약</a></li>
-                        <li class="menu"><a href>커뮤니티</a></li>
+                       <!-- <li class="menu"><a href>커뮤니티</a></li>-->
                     </ul>
                 </nav>
                 <h2 id="login"><a href=>로그인</a></h2>
@@ -31,12 +32,12 @@
                 <%= text %>
                 </div>
                     
-                <input type="button" value="로그인" id=loginForm_btn class=loginForm_input onclick="processLogin();" >
+                <input type="button" value="로그인" id=loginForm_btn class=loginForm_input onclick="examineExceptionLogin();" >
                 <br>
 
                 <strong>계정이 없으신 경우 <a href="/join" id="join">회원가입 </a>을 눌러주세요.</strong></a>
             </form>
         </div>
     </body>
-    <script type="text/javascript" src="javascripts/joinAndLogin.js"></script>
+    
 </html>

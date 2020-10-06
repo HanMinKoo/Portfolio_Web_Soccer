@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/adminpage.css">
+ 
+
+    <head>
+        <title>Soccer</title>
+    </head>
+    <body>
+        <header id="m9Head">
+            <div id="wrap_head">
+                
+                <h2 id="home"><a href=>M9SOCCER</a></h2>
+                <nav>
+                    <ul>
+                        <li class="menu"><a href="/">홈</a></li>
+                        <li class="menu"><a href="/reservation">운동장 예약</a></li>
+                       <!-- <li class="menu"><a href>커뮤니티</a></li>-->
+                    </ul>
+                </nav>
+                <% if(id!==''){ %>
+                    <h2 id="login" class="loginInfo"><%=id%>&nbsp;|&nbsp; <a class="loginInfo" href='/logout'> LOGOUT </a></h2>
+                    <h2><a class="loginInfo" href='/mypage'>마이 페이지</a></h2>
+                <% } else if(id==='admin'){%>
+                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
+                    <h2 id="mypage"><a href='/adminpage'>관리자 페이지</a></h2>
+                <%}else{%>   
+                    <h2 id="login"><a href='/login'>로그인</a></h2>
+                <%}%>
+            </div>
+        </header>
+        <div id="content_wrap">
+            <table>
+                <caption>
+                    <h3>운동장 예약 현황</h3>
+                <caption>
+                <thead>
+                    <tr>
+                        <th>예약 번호</th>
+                        <th>사용자 아이디</th>
+                        <th>운동장</th>
+                        <th>예약 시간</th>
+                        <th>예약 상태</th>
+                        <th>예약 처리</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if(reservationList[0].name===undefined){%>
+                        <tr><td><%=reservationList[0].text%></td></tr>
+                    <%}else{%>
+                        <%for(let i=0; i<reservationList.length; i++){%>
+                            <tr>
+                                <td><%=reservationList[i].id%></td>
+                                <td><%=reservationList[i].account%></td>
+                                <td><%=reservationList[i].name%></td>
+                                <td><%=reservationList[i].use_date%>&nbsp;<%=reservationList[i].use_time%></td>
+                                <td><%=reservationList[i].state%></td>
+                                <td><button type='button' id='approvalBtn' onclick="test('<%=reservationList[i].id%>');" class="btn">승인</button><button type='button' id='cancelBtn' class="btn">취소</button> <button type='button' onclick="" class="btn">삭제</button></td>
+                            </tr>
+                        <%}%> 
+                    <%}%>
+                </tbody>
+            </table>
+        </div>
+    </body>
+    <script>
+        function test(t){
+            alert(t);
+        }
+    </script>
+</html>

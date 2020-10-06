@@ -1,16 +1,7 @@
-const mysql =require('mysql');
-const dbOption = require('./Option_DB');
-const dbTest= require('./test_db');
-function loginUser(userId, userPassword,callback){
-   // let dbCon=dbTest.connectDB();
-    const dbCon = mysql.createConnection(dbOption);
+const connectionDB= require('../models/connection_DB.js');
 
-    dbCon.connect((err)=>{
-        if(err!==null)
-            console.log(`Error: DB Connect fail: ` ,err);
-        else
-            console.log('DB Connect Success');
-    });
+function loginUser(userId, userPassword,callback){
+    const dbCon=connectionDB.connectDB();
 
     const query= `select account from web_portfolio1.user where account='${userId}' and password='${userPassword}'`;
     dbCon.query(query, (err,data)=>{

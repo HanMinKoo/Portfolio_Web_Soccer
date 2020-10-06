@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
-    <script type="text/javascript" src="javascripts/index.js"></script>
-  
 
-   
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+        <script type="text/javascript" src="javascripts/index.js"></script>
+        
         <title>Soccer</title>
     </head>
     <body>
@@ -21,11 +20,15 @@
                        <!-- <li class="menu"><a href>커뮤니티</a></li>-->
                     </ul>
                 </nav>
-                <% if(id!==''){ %>
+                <% if(id!=='' && id!=='admin'){ %>
                     <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
-                <% } else{%>   
+                    <h2><a href='/mypage'>마이 페이지</a></h2>
+                <% } else if(id==='admin'){%>
+                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
+                    <h2><a href='/adminpage'>관리자 페이지</a></h2>
+                <%}else%>   
                     <h2 id="login"><a href='/login'>로그인</a></h2>
-                <% }%>
+                
             </div>
         </header>
         <div id="test"></div>

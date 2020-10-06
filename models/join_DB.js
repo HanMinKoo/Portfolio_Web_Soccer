@@ -1,15 +1,7 @@
-const mysql =require('mysql');
-const dbOption = require('./Option_DB');
+const connectionDB= require('../models/connection_DB.js');
 
 function saveUser(userName, userEmail, userPassword,response,userId){
-    
-    const dbCon = mysql.createConnection(dbOption);
-    dbCon.connect((err)=>{
-        if(err!==null)
-            console.log(`Error: DB Connect fail: ` ,err);
-        else
-            console.log('DB Connect Success');
-    });
+    const dbCon=connectionDB.connectDB();
 
     const query= `INSERT INTO web_portfolio1.user(account, name, email, password) 
     VALUES('${userId}','${userName}', '${userEmail}', '${userPassword}')`;
@@ -25,7 +17,6 @@ function saveUser(userName, userEmail, userPassword,response,userId){
         }
         dbCon.end();
     });
-    
 }
 
 module.exports={

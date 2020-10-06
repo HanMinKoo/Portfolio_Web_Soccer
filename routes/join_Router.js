@@ -1,11 +1,9 @@
 const express = require('express');
 const crypto = require('crypto');
-const mysql = require('mysql');
 
 const router = express.Router();
 const userDb = require('../models/join_DB.js');
-
-const dbOption = require('../models/Option_DB');
+const connectionDB= require('../models/connection_DB.js');
 
 router.get('/',(req,res)=>{
     console.log('join page Render');
@@ -15,13 +13,7 @@ router.post('/checkid',(req,res)=>{
     console.log("body의 id값",req.body);
 
 
-    const dbCon = mysql.createConnection(dbOption);
-    dbCon.connect((err)=>{
-        if(err!==null)
-            console.log(`Error: DB Connect fail: ` ,err);
-        else
-            console.log('DB Connect Success');
-    });
+    const dbCon=connectionDB.connectDB();
 
     let query=`select * from web_portfolio1.user where account='${req.body.userID}'`;
 

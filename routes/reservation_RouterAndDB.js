@@ -1,24 +1,12 @@
 const express = require('express');
-const mysql =require('mysql');
-const dbOption = require('../models/Option_DB');
+const connectionDB= require('../models/connection_DB.js');
 const router = express.Router();
 
-function connectDB(){
-    const dbCon = mysql.createConnection(dbOption);
-    
-    dbCon.connect((err)=>{
-        if(err!==null)
-            console.log(`Error: DB Connect fail: ` ,err);
-        else
-            console.log('DB Connect Success');
-    });
 
-    return dbCon;
-}
 router.post('/process',(req,res)=>{//get방식은 url query에 값을 form의 데이터들을 붙여 보내준다.예약과 관련된 날짜만 넘기는거니 괜찮음.
     console.log("정말정말??", req.body);
 
-    const dbCon=connectDB();
+    const dbCon=connectionDB.connectDB();
 
     const ground_id=req.body.ground_id;
     const use_date = `${req.body.year}년${req.body.month}월${req.body.day}일`;
@@ -55,7 +43,7 @@ router.post('/process',(req,res)=>{//get방식은 url query에 값을 form의 �
 
     /*****로그인 상태에서 운동장 시간을 선택했을 경우, 즉 다 선택 후 예약하기 버튼 눌렀을 때******/
     else if(req.body.groundTime!==undefined && req.session.userId!==undefined){ //운동장 시간 선택했는지, 로그인상태 , 즉 완벽한   
-        const dbCon=connectDB();
+        const dbCon=connectionDB.connectDB();
     
         let query=`select * from web_portfolio1.ground_reservation_list where ground_id=${ground_id} and use_date='${use_date}' and use_time='${req.body.groundTime}'`;
 
@@ -94,7 +82,7 @@ router.get('/',(req,res)=>{
     console.log("query=", req.query);
     console.log("session=", req.session);
     
-    const dbCon=connectDB();
+    const dbCon=connectionDB.connectDB();
 
     let query= `select * from web_portfolio1.ground`;
 

@@ -1,16 +1,8 @@
-const mysql =require('mysql');
-const dbOption = require('./Option_DB');
-
+const connectionDB= require('../models/connection_DB.js');
 
 function save(userName,phoneNumber,content,infoCheck){
-    const dbCon=mysql.createConnection(dbOption);
-   
-    dbCon.connect((err)=>{
-        if(err!==null)
-            console.log(`Error: DB Connect fail: ` ,err);
-        else
-            console.log('DB Connect Success');
-    });
+    const dbCon=connectionDB.connectDB();
+
     const query= `INSERT INTO web_portfolio1.inquire(name, phone, content, privacy_check) 
     VALUES('${userName}', '${phoneNumber}', '${content}', '${infoCheck}')`;
 
