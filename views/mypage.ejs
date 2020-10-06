@@ -2,6 +2,8 @@
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="stylesheets/mypage.css">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src="javascripts/admin.js"></script>
  
 
     <head>
@@ -19,15 +21,14 @@
                        <!-- <li class="menu"><a href>커뮤니티</a></li>-->
                     </ul>
                 </nav>
-                <% if(id!==''){ %>
-                    <h2 id="login" class="loginInfo"><%=id%>&nbsp;|&nbsp; <a class="loginInfo" href='/logout'> LOGOUT </a></h2>
-                    <h2><a class="loginInfo" href='/mypage'>마이 페이지</a></h2>
+                <% if(id!=='' && id!=='admin'){ %>
+                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
+                    <h2><a href='/mypage'>마이 페이지</a></h2>
                 <% } else if(id==='admin'){%>
                     <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
-                    <h2 id="mypage"><a href='/adminpage'>관리자 페이지</a></h2>
-                <%}else{%>   
+                    <h2><a href='/adminpage'>관리자 페이지</a></h2>
+                <%}else%>   
                     <h2 id="login"><a href='/login'>로그인</a></h2>
-                <%}%>
             </div>
         </header>
         <div id="content_wrap">
@@ -37,6 +38,7 @@
                 <caption>
                 <thead>
                     <tr>
+                        <th>예약 번호</th>
                         <th>운동장</th>
                         <th>예약 시간</th>
                         <th>예약 상태</th>
@@ -49,10 +51,11 @@
                     <%}else{%>
                         <%for(let i=0; i<reservationList.length; i++){%>
                             <tr class="tableLine">
+                                <td><%=reservationList[i].id%></td>
                                 <td><%=reservationList[i].name%></td>
                                 <td><%=reservationList[i].use_date%>&nbsp;<%=reservationList[i].use_time%></td>
                                 <td><%=reservationList[i].state%></td>
-                                <td><button type='button' id='cancelBtn'>취소</button></td>
+                                <td><button type='button' id='cancelBtn' onclick="updateReservationState('cancel','<%=reservationList[i].id%>');">취소</button></td>
                             </tr>
                         <%}%> 
                     <%}%>

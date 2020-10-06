@@ -2,10 +2,18 @@
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="stylesheets/adminpage.css">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src="javascripts/admin.js"></script>
  
 
     <head>
         <title>Soccer</title>
+        <script>
+            if(id!==admin){
+                alert("관리자만 이용할 수 있습니다.");
+                location.href='/';
+            }
+        </script>
     </head>
     <body>
         <header id="m9Head">
@@ -19,15 +27,14 @@
                        <!-- <li class="menu"><a href>커뮤니티</a></li>-->
                     </ul>
                 </nav>
-                <% if(id!==''){ %>
-                    <h2 id="login" class="loginInfo"><%=id%>&nbsp;|&nbsp; <a class="loginInfo" href='/logout'> LOGOUT </a></h2>
-                    <h2><a class="loginInfo" href='/mypage'>마이 페이지</a></h2>
+                <% if(id!=='' && id!=='admin'){ %>
+                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
+                    <h2><a href='/mypage'>마이 페이지</a></h2>
                 <% } else if(id==='admin'){%>
                     <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
-                    <h2 id="mypage"><a href='/adminpage'>관리자 페이지</a></h2>
-                <%}else{%>   
+                    <h2><a href='/adminpage'>관리자 페이지</a></h2>
+                <%}else%>   
                     <h2 id="login"><a href='/login'>로그인</a></h2>
-                <%}%>
             </div>
         </header>
         <div id="content_wrap">
@@ -56,7 +63,14 @@
                                 <td><%=reservationList[i].name%></td>
                                 <td><%=reservationList[i].use_date%>&nbsp;<%=reservationList[i].use_time%></td>
                                 <td><%=reservationList[i].state%></td>
-                                <td><button type='button' id='approvalBtn' onclick="test('<%=reservationList[i].id%>');" class="btn">승인</button><button type='button' id='cancelBtn' class="btn">취소</button> <button type='button' onclick="" class="btn">삭제</button></td>
+                                <td>
+                                    <%if(reservationList[i].state==='승인 완료'){%>
+                                    <button type='button' id='cancelBtn' onclick="updateReservationState('cancel','<%=reservationList[i].id%>');" class="btn">취소</button> 
+                                    <%}else{%>
+                                    <button type='button' id='approvalBtn' onclick="updateReservationState('approval','<%=reservationList[i].id%>', '<%=reservationList[i].state%>');" class="btn">승인</button>
+                                    <button type='button' id='cancelBtn' onclick="updateReservationState('cancel','<%=reservationList[i].id%>');" class="btn">취소</button> 
+                                    <%}%>
+                                </td>
                             </tr>
                         <%}%> 
                     <%}%>
@@ -64,9 +78,5 @@
             </table>
         </div>
     </body>
-    <script>
-        function test(t){
-            alert(t);
-        }
-    </script>
+    
 </html>

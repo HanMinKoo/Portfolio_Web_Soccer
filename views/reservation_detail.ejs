@@ -4,14 +4,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="stylesheets/reservation_detail.css">
         <script defer src="javascripts/reservation_detail.js"></script>
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-   
+        <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <body>
         <header id="m9Head">
             <div id="wrap_head">
-                
                 <h2 id="home"><a href=>M9SOCCER</a></h2>
                 <nav>
                     <ul>
@@ -20,11 +17,14 @@
                       <!--  <li class="menu"><a href>커뮤니티</a></li>-->
                     </ul>
                 </nav>
-                <% if(id!==''){ %>
+                <% if(id!=='' && id!=='admin'){ %>
                     <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
-                <% } else{%>   
+                    <h2><a href='/mypage'>마이 페이지</a></h2>
+                <% } else if(id==='admin'){%>
+                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
+                    <h2><a href='/adminpage'>관리자 페이지</a></h2>
+                <%}else%>   
                     <h2 id="login"><a href='/login'>로그인</a></h2>
-                <% }%>
             </div>
         </header>
         <div id="body_wrap">
@@ -81,7 +81,7 @@
                         <option value="30" >30일</option>
                         <option value="31" >31일</option>
                     </select>
-                    <strong>일</strong
+                    <strong>일</strong>
                     
                     <p id="timeTable"> 
                             <!--한줄에 time 3개씩 출력-->
@@ -109,9 +109,7 @@
                         
                         <h3>이미 완료된 예약 현황(시작 시간 기준)</h3>
                         <div id='ImpossibleTime'></div>
-                        
-                       
-                        
+                                 
                         <input id="groundNumber" type="radio" name="ground_id" value=<%=groundList.id%> checked >
                         <button type= "button" id="reservationBtn" onclick="submitReservationInfo();">예약하기</button>
                     </p>
@@ -120,43 +118,5 @@
             </div>
         </div>        
     </body>
-    <script>
-        function chanegeCalendar(){
-            const year=$("#year").val();
-            const month=$("#month").val();
-            const day=$("#day").val();
-            const ground_id= $("#groundNumber").val();
-           
-            if(year==='선택'|| month==='선택'|| day==='선택')
-            {
-                alert('날짜를 선택하세요.');
-                return;
-            }
-            const data={
-                year:year,
-                month:month,
-                day:day,
-                ground_id:ground_id
-            };
-            
-        
-            $.ajax({
-                url: "/reservation/process",
-                type: 'post',
-                data: data,
-                success: function (data) {
-                    const div=document.getElementById('ImpossibleTime');
-                    let text='';
-                    for(let i=0; i<data.length; i++)
-                        text+=data[i].time+", ";  //가능 시간대 문자열로 가공
-                 
-                    div.innerHTML=`<strong>${text}</strong>`;     
-                },
-                error: function (xhr, status) {
-                    alert(xhr + " : " + status);
-                }
-            });
-        }
-    </script>
 </html>
 

@@ -14,29 +14,24 @@ a{text-decoration: none; color:black;}
 }
 
 /* header 관련: 메뉴, 홈, 로그인  */
-#m9Head{
+header{
     position: fixed;
     top:0;
-    background-color: white;
+    background-color: gray;
     width:100%;
     min-width:1200px;
-    height:60px;
     z-index: 1;
-  
 }
 #wrap_head{
-    height:60px;
+    height:80px;
     width: 1200px;
     margin:0 auto;
     text-align: center;
- 
- 
+    border:1px solid red;
 }
 #wrap_head ul ,#home {
     float:left;
     margin-right:20%;
-  
-    
 }
 #wrap_head ul li{
     display:inline;
@@ -46,17 +41,14 @@ a{text-decoration: none; color:black;}
 }
 #login{
     float:right;
-  
     font-size: 20px;
-    margin-left: 0%;
-    
 }
 
 
 
 
+
 #backImgMain{
- 
     width:1920px;
     height:800px;
 

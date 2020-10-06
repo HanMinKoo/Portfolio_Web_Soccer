@@ -86,6 +86,6 @@ table tr td{
     display: block;
     margin:0 auto;
 }
-#approvalBtn, #cancelBtn{
+#approvalBtn{
     margin-bottom: 10px;
 }

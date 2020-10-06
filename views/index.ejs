@@ -4,15 +4,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
-        <script type="text/javascript" src="javascripts/index.js"></script>
+        <script defer type="text/javascript" src="javascripts/index.js"></script>
         
         <title>Soccer</title>
     </head>
     <body>
         <header id="m9Head">
             <div id="wrap_head">
-                
-                <h2 id="home"><a href=>M9SOCCER</a></h2>
+                <h2 id="home"><a href="/">M9SOCCER</a></h2>
                 <nav>
                     <ul>
                         <li class="menu"><a href="/">홈</a></li>
@@ -21,14 +20,14 @@
                     </ul>
                 </nav>
                 <% if(id!=='' && id!=='admin'){ %>
-                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
-                    <h2><a href='/mypage'>마이 페이지</a></h2>
+                    <strong id="login" ><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
+                    <strong><a href='/mypage'>마이 페이지</a></strong>
                 <% } else if(id==='admin'){%>
-                    <h2 id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></h2>
-                    <h2><a href='/adminpage'>관리자 페이지</a></h2>
-                <%}else%>   
-                    <h2 id="login"><a href='/login'>로그인</a></h2>
-                
+                    <strong id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
+                    <strong><a href='/adminpage'>관리자 페이지</a></strong>
+                <%}else{%>   
+                    <strong id="login"><a href='/login'>로그인</a></strong>
+                <%}%>
             </div>
         </header>
         <div id="test"></div>
