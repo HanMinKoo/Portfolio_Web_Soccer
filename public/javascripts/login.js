@@ -1,10 +1,10 @@
 /*****로그인 예외처리*****/
 function examineExceptionLogin(){
     const form=document.login_form;
-
-    if(form.id.value===''){
+    
+    if(form.account.value===''){
         alert("아이디를 입력해주세요.");
-        form.id.focus();
+        form.account.focus();
         return;
     }
     else if(form.password.value===''){

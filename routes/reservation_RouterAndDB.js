@@ -42,7 +42,7 @@ router.post('/process',(req,res)=>{//get방식은 url query에 값을 form의 �
     }
 
     /*****로그인 상태에서 운동장 시간을 선택했을 경우, 즉 다 선택 후 예약하기 버튼 눌렀을 때******/
-    else if(req.body.groundTime!==undefined && req.session.userId!==undefined){ //운동장 시간 선택했는지, 로그인상태 , 즉 완벽한   
+    else if(req.body.groundTime!==undefined && req.session.account!==undefined){ //운동장 시간 선택했는지, 로그인상태 , 즉 완벽한   
         const dbCon=connectionDB.connectDB();
     
         let query=`select * from web_portfolio1.ground_reservation_list where ground_id=${ground_id} and use_date='${use_date}' and use_time='${req.body.groundTime}'`;
@@ -55,7 +55,7 @@ router.post('/process',(req,res)=>{//get방식은 url query에 값을 form의 �
 
             //console.log(data[0]);
             if(data[0]===undefined){//예약 안되어있으면 예약 진행
-                query = `insert into web_portfolio1.ground_reservation_list(account,ground_id,use_date,use_time) values('${req.session.userId}',${ground_id},'${use_date}','${req.body.groundTime}')`;
+                query = `insert into web_portfolio1.ground_reservation_list(user_id,ground_id,use_date,use_time) values('${req.session.user_id}',${ground_id},'${use_date}','${req.body.groundTime}')`;
 
                 dbCon.query(query, (err,data2)=>{ //ground_number에 맞는 timetable DB불러오기
                     if(err)
@@ -74,7 +74,7 @@ router.post('/process',(req,res)=>{//get방식은 url query에 값을 form의 �
     }
 
     /*****운동장 시간 체크 but 비로그인 상태, 즉 비정상적 접근 ******/
-    else if(req.query.groundTime!==undefined && req.session.userId===undefined)
+    else if(req.query.groundTime!==undefined && req.session.account===undefined)
         res.render('exception',{exception:'비정상적 접근입니다. 로그인 후 이용하세요.'});
      
 });
@@ -93,32 +93,32 @@ router.get('/',(req,res)=>{
             console.log('table name:ground / Result: select query Success');
                     
         
-        console.log(groundInfo);
+        //console.log(groundInfo);
         
 
         /*****운동장 리스트 페이지*****/
         if(req.query.number===undefined){  
-            if(req.session.userId!==undefined)
-                res.render('reservation',{id:req.session.userId,groundList:groundInfo});
+            if(req.session.account!==undefined)
+                res.render('reservation',{account:req.session.account,groundList:groundInfo});
             else
-                res.render('reservation',{id:'',groundList:groundInfo});
+                res.render('reservation',{account:'',groundList:groundInfo});
         }
 
         /*****운동장 예약 페이지*****/
         else{
-            if(req.session.userId===undefined) //만약 로그인이 안되어있으면, 운동장 상세 예약 현황 못봄
+            if(req.session.account===undefined) //만약 로그인이 안되어있으면, 운동장 상세 예약 현황 못봄
                 res.render('exception',{exception:'예약 현황은 로그인 사용자만 이용할 수 있습니다.'});
             else{
-                query=`select ground_time from web_portfolio1.ground_timetable where ground_id=${groundInfo[req.query.number-1].id}`;
+                query=`select ground_time from web_portfolio1.ground_time_list where ground_id=${groundInfo[req.query.number-1].id}`;
                 
                 dbCon.query(query, (err,data2)=>{ //ground_id에 맞는 timetable DB불러오기
                     if(err)
-                        console.log('table name:ground_timetable / Error: select query Error : ',err);
+                        console.log('table name:ground_time_list / Error: select query Error : ',err);
                     else
                         console.log('table name:ground_timetable / Result: query Success');
                
 
-                    res.render('reservation_detail',{id:req.session.userId, groundList:groundInfo[req.query.number-1], groundTimeTable:data2, reservationList:''});
+                    res.render('reservation_detail',{account:req.session.account, groundList:groundInfo[req.query.number-1], groundTimeTable:data2, reservationList:''});
                 });
             } 
         }              

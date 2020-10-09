@@ -19,11 +19,11 @@
                        <!-- <li class="menu"><a href>커뮤니티</a></li>-->
                     </ul>
                 </nav>
-                <% if(id!=='' && id!=='admin'){ %>
-                    <strong id="login" ><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
+                <% if(account!=='' && account!=='admin'){ %>
+                    <strong id="login" ><%=account%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
                     <strong><a href='/mypage'>마이 페이지</a></strong>
-                <% } else if(id==='admin'){%>
-                    <strong id="login"><%=id%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
+                <% } else if(account==='admin'){%>
+                    <strong id="login"><%=account%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
                     <strong><a href='/adminpage'>관리자 페이지</a></strong>
                 <%}else{%>   
                     <strong id="login"><a href='/login'>로그인</a></strong>

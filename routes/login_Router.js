@@ -2,7 +2,7 @@ const express = require('express');
 const crypto = require('crypto');
 
 const router=express.Router();
-const userLoginDb = require('../models/login_DB.js');
+const loginDB = require('../models/login_DB.js');
 
 router.get('/',(req,res)=>{
    console.log("login page render");
@@ -19,20 +19,17 @@ router.get('/',(req,res)=>{
 router.post('/process',(req,res)=>{
     console.log(req.body);
     let password;
-    let id;
-
-    
 
     crypto.pbkdf2(req.body.password,'m9m9',8080,64,'sha512',(err,key)=>{
         console.log(key.toString('base64'));
         password=key.toString('base64');
-        id=req.body.id;
-        userLoginDb.loginUser(req.body.id,password,authCheck);
+        account=req.body.account;
+        loginDB.getUserInfo(account,password,authCheck);
       
     });
 
 
-    function authCheck(result,userId){
+    function authCheck(result,account,user_id){
         console.log("result:",result);
         
 
@@ -45,7 +42,8 @@ router.post('/process',(req,res)=>{
         else //result ==='success'
         {
             req.session.isLogined=true;
-            req.session.userId=userId;
+            req.session.account=account;
+            req.session.user_id=user_id;
     
             console.log("req.session",req.session);
             req.session.save(()=>{
