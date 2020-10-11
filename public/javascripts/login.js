@@ -14,3 +14,6 @@ function examineExceptionLogin(){
     }
     form.submit(); 
 }
+function test(){
+    alert('asda');
+}

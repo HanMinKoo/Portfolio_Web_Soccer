@@ -5,8 +5,6 @@
         <link rel="stylesheet" type="text/css" href="stylesheets/join.css">
         <script defer src="javascripts/join.js"></script>
         <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            
-        
     </head>
     <body>
        
@@ -16,15 +14,15 @@
 
                 <label>이름</label>
                 <input type="text" name="userName">
-
+              
                 <label>이메일</label>
-                <button type="submit" onclick="checkEmail();" id="duplicationChk">중복체크</button>
+                <button type="button" onclick="checkDuplication('email');" id="duplicationChk">중복체크</button>
             
                 <input type="email" name="userEmail" id="userEmail">
 
                 
                 <label>아이디</label>
-                <button type="button" onclick="checkID();" id="duplicationChk">중복체크</button>
+                <button type="button" onclick="checkDuplication('id');" id="duplicationChk">중복체크</button>
                 
                 
                 <input type="text" name="userId" id="userId">
@@ -33,14 +31,13 @@
                 <label>비밀번호</label>
                 
                 <input type="password" name="userPassword1">
-            
                 <label>비밀번호 확인</label>
                 
                 <input type="password" name="userPassword2">
+                <input class="duplicationRadio" type="radio" name="duplicationIdChk" id="duplicationRadioId" value="" >
+                <input class="duplicationRadio" type="radio" name="duplicationEmailChk" id="duplicationRadioEmail"value="" >
                 
-                <button type= "button" id="joinBtn" onclick="examineExceptionJoin();">
-                    가입하기
-                </button> 
+                <button type= "button" id="joinBtn" onclick="examineExceptionJoin();">가입하기</button> 
                 <br> <br>
                 <strong><a href="/login" id="login">로그인</a> 하러가기</strong>
             </form>

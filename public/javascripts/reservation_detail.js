@@ -15,7 +15,6 @@ function submitReservationInfo(){
     form.submit();
 }
 
-
 function chanegeCalendar(){
     const year=$("#year").val();
     const month=$("#month").val();
@@ -34,7 +33,6 @@ function chanegeCalendar(){
         ground_id:ground_id
     };
     
-
     $.ajax({
         url: "/reservation/process",
         type: 'post',

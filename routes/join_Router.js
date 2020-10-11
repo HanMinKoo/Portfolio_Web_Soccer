@@ -9,13 +9,14 @@ router.get('/',(req,res)=>{
     console.log('join page Render');
     res.render('join');
 });
-router.post('/checkid',(req,res)=>{
-    console.log("body의 id값",req.body);
-
-
+router.post('/checkduplication',(req,res)=>{
+    console.log("body의 value값",req.body);
     const dbCon=connectionDB.connectDB();
-
-    let query=`select * from web_portfolio1.user where account='${req.body.userID}'`;
+    let query;
+    if(req.body.type==='text')
+        query=`select * from web_portfolio1.user where account='${req.body.value}'`;
+    else if(req.body.type==='email')
+        query=`select * from web_portfolio1.user where email='${req.body.value}'`;
 
     dbCon.query(query, (err,userInfo)=>{
         if(err)
@@ -29,9 +30,7 @@ router.post('/checkid',(req,res)=>{
         dbCon.end();
     });
 });
-router.post('/checkemail',(req,res)=>{
-    console.log(req.body);
-});
+
 router.post('/progress', (req,res)=>{
     console.log(req.body);
     crypto.pbkdf2(req.body.userPassword1,'m9m9',8080,64,'sha512',(err,key)=>{
