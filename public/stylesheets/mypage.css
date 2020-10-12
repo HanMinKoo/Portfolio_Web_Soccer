@@ -20,16 +20,16 @@ a{text-decoration: none; color:black;}
     background-color: white;
     width:100%;
     min-width:1200px;
-    height:60px;
+    height:80px;
     z-index: 1;
-  
+
 }
 #wrap_head{
     height:60px;
     width: 1200px;
     margin:0 auto;
     text-align: center;
- 
+   
  
 }
 #wrap_head ul ,#home {
@@ -50,6 +50,12 @@ a{text-decoration: none; color:black;}
     font-size: 20px;
     margin-left: 0%;
     
+}
+
+.page{
+    float: right;
+    margin: 1% 4% 0 0;
+    font-size: 20px;
 }
 
 #content_wrap{

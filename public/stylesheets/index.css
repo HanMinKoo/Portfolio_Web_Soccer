@@ -17,7 +17,7 @@ a{text-decoration: none; color:black;}
 header{
     position: fixed;
     top:0;
-    background-color: gray;
+   
     width:100%;
     min-width:1200px;
     z-index: 1;
@@ -27,7 +27,7 @@ header{
     width: 1200px;
     margin:0 auto;
     text-align: center;
-    border:1px solid red;
+  
 }
 #wrap_head ul ,#home {
     float:left;
@@ -43,6 +43,13 @@ header{
     float:right;
     font-size: 20px;
 }
+
+.page{
+    float: right;
+    margin: 1% 4% 0 0;
+    font-size: 20px;
+}
+
 
 #backImgMain{
     width:1920px;

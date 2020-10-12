@@ -1,5 +1,6 @@
 const express = require('express');
 const connectionDB= require('../models/connection_DB.js');
+const pool= require('../models/pool_DB.js');
 const router = express.Router();
 
 
@@ -43,34 +44,47 @@ router.post('/process',(req,res)=>{//get방식은 url query에 값을 form의 �
 
     /*****로그인 상태에서 운동장 시간을 선택했을 경우, 즉 다 선택 후 예약하기 버튼 눌렀을 때******/
     else if(req.body.groundTime!==undefined && req.session.account!==undefined){ //운동장 시간 선택했는지, 로그인상태 , 즉 완벽한   
-        const dbCon=connectionDB.connectDB();
+
+
+
+
+        //******트랜잭션 적용 *****/
+        const conn=await pool.getConnection();
+
+
+
+
+
+
+        //******트랜잭션 미적용 *****/
+        // const dbCon=connectionDB.connectDB();
     
-        let query=`select * from web_portfolio1.ground_reservation_list where ground_id=${ground_id} and use_date='${use_date}' and use_time='${req.body.groundTime}'`;
+        // let query=`select * from web_portfolio1.ground_reservation_list where ground_id=${ground_id} and use_date='${use_date}' and use_time='${req.body.groundTime}'`;
 
-        dbCon.query(query, (err,data)=>{ //ground_number(운동장 번호와) 예약날짜, 예약시간이 이미 db에 있는지 조회
-            if(err)
-                console.log('table name:ground_reservation_list / Error: select query Error : ',err);
-            else
-                console.log('table name:ground_reservation_list / Result: selectquery Success');
+        // dbCon.query(query, (err,data)=>{ //ground_number(운동장 번호와) 예약날짜, 예약시간이 이미 db에 있는지 조회
+        //     if(err)
+        //         console.log('table name:ground_reservation_list / Error: select query Error : ',err);
+        //     else
+        //         console.log('table name:ground_reservation_list / Result: selectquery Success');
 
-            //console.log(data[0]);
-            if(data[0]===undefined){//예약 안되어있으면 예약 진행
-                query = `insert into web_portfolio1.ground_reservation_list(user_id,ground_id,use_date,use_time) values('${req.session.user_id}',${ground_id},'${use_date}','${req.body.groundTime}')`;
+        //     //console.log(data[0]);
+        //     if(data[0]===undefined){//예약 안되어있으면 예약 진행
+        //         query = `insert into web_portfolio1.ground_reservation_list(user_id,ground_id,use_date,use_time) values('${req.session.user_id}',${ground_id},'${use_date}','${req.body.groundTime}')`;
 
-                dbCon.query(query, (err,data2)=>{ //ground_number에 맞는 timetable DB불러오기
-                    if(err)
-                        console.log('table name:ground_reservation_list / Error: insert query Error : ',err);
-                    else
-                        console.log('table name:ground_reservation_list / Result: insert query Success');
+        //         dbCon.query(query, (err,data2)=>{ //ground_number에 맞는 timetable DB불러오기
+        //             if(err)
+        //                 console.log('table name:ground_reservation_list / Error: insert query Error : ',err);
+        //             else
+        //                 console.log('table name:ground_reservation_list / Result: insert query Success');
 
-                    //console.log(data2);
-                    res.redirect('/');
-                });
-            }
-            else{ //예약되어있으면 session을 통해 alert출력 / 또는 에러페이지만 새로 만들기
-                res.render('exception',{exception:'이미 예약된 시간입니다.'});
-            }
-        });
+        //             //console.log(data2);
+        //             res.redirect('/');
+        //         });
+        //     }
+        //     else{ //예약되어있으면 session을 통해 alert출력 / 또는 에러페이지만 새로 만들기
+        //         res.render('exception',{exception:'이미 예약된 시간입니다.'});
+        //     }
+        // });
     }
 
     /*****운동장 시간 체크 but 비로그인 상태, 즉 비정상적 접근 ******/

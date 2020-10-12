@@ -21,10 +21,11 @@
                 </nav>
                 <% if(account!=='' && account!=='admin'){ %>
                     <strong id="login" ><%=account%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
-                    <strong><a href='/mypage'>마이 페이지</a></strong>
+                    <div class="page"><strong ><a href='/mypage'>마이 페이지</a></strong></div>
+                    
                 <% } else if(account==='admin'){%>
                     <strong id="login"><%=account%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
-                    <strong><a href='/adminpage'>관리자 페이지</a></strong>
+                    <div class="page"><strong><a href='/adminpage'>관리자 페이지</a></strong></div>
                 <%}else{%>   
                     <strong id="login"><a href='/login'>로그인</a></strong>
                 <%}%>

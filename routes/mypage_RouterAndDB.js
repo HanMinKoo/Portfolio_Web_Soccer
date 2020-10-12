@@ -9,7 +9,7 @@ require('dotenv').config();
 router.get('/',(req,res)=>{
     const dbCon=connectionDB.connectDB();
 
-    let query=`select ground_reservation_list.id, name, use_date, ground_reservation_list.use_time, state from ground_reservation_list  left join ground on ground_reservation_list.ground_id = ground.id where user_id=${req.session.user_id} order by use_date desc` ;
+    let query=`select ground_reservation_list.id, name, use_date, ground_reservation_list.use_time, state from ground_reservation_list  left join ground on ground_reservation_list.ground_id = ground.id where user_id=${req.session.user_id} order by id desc` ;
 
     dbCon.query(query,(err,result)=>{
         if(err)

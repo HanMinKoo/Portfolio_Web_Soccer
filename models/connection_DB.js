@@ -9,7 +9,7 @@ function connectDB(){
         port	:process.env.DB_PORT,
         database	:process.env.DB_DATABASE,
     });
-   
+  
     dbCon.connect((err)=>{
         if(err!==null)
             console.log(`Error: DB Connect fail: ` ,err);
@@ -18,6 +18,7 @@ function connectDB(){
     });
     return dbCon;
 }
+
 module.exports={
     connectDB
 }

@@ -2,7 +2,7 @@ const express = require('express');
 const crypto = require('crypto');
 
 const router = express.Router();
-const userDb = require('../models/join_DB.js');
+const joinDB = require('../models/join_DB.js');
 const connectionDB= require('../models/connection_DB.js');
 
 router.get('/',(req,res)=>{
@@ -34,10 +34,9 @@ router.post('/checkduplication',(req,res)=>{
 router.post('/progress', (req,res)=>{
     console.log(req.body);
     crypto.pbkdf2(req.body.userPassword1,'m9m9',8080,64,'sha512',(err,key)=>{
-        console.log("base64처리 안했을떄의 key값: ",key);
-        console.log("base64인코딩 방식을 사용한 key값:",key.toString('base64'));
+        console.log("base64 인코딩 후 key값:",key.toString('base64'));
         let password=key.toString('base64');
-        userDb.saveUser(req.body.userName,req.body.userEmail,password,res,req.body.userId);
+        joinDB.saveUser(req.body.userName,req.body.userEmail,password,res,req.body.userId);
     });
 });
 

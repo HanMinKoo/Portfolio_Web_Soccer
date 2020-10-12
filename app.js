@@ -48,6 +48,7 @@ app.use(session({
 }));
 
 app.get('/',(req,res,next)=>{
+  
   console.log(req.session.account);
   return ((req.session.account!==undefined)? res.render('index',{account:req.session.account}) :res.render('index',{account:''}));
 //db에 session이 저장되어있으면 서버 껐다켜도 세션 안풀림. 
