@@ -18,37 +18,40 @@ html, body {
 a{text-decoration: none; color:black;}
 
 /* header 관련: 메뉴, 홈, 로그인  */
-#m9Head{
-    position: fixed;
-    top:0;
-    background-color: white;
-    width:100%;
-    min-width:1200px;
-    height:60px;
-    z-index: 1;
-   
+header{
+  position: fixed;
+  top:0;
+ 
+  width:100%;
+  min-width:1200px;
+  z-index: 1;
 }
 #wrap_head{
-    height:60px;
-    width: 1200px;
-    margin:0 auto;
-    text-align: center;
-   
+  height:80px;
+  width: 1200px;
+  margin:0 auto;
+  text-align: center;
+
 }
 #wrap_head ul ,#home {
-    float:left;
-    margin-right:20%;
+  float:left;
+  margin-right:20%;
 }
 #wrap_head ul li{
-    display:inline;
-    font-size:1.5em;
-    margin-right:80px;
+  display:inline;
+  font-size:1.5em;
+  
+  margin-right:100px;
 }
 #login{
-    float:left;
+  float:right;
+  font-size: 20px;
 }
-#sucessLogin{
-    float:right;
+
+.page{
+  float: right;
+  margin: 1% 4% 0 0;
+  font-size: 20px;
 }
 
 #body_wrap{
