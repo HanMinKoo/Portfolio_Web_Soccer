@@ -5,32 +5,43 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
         <script defer type="text/javascript" src="javascripts/index.js"></script>
+        <script defer type="text/javascript" src="javascripts/hamburgerBtn.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/3236959d69.js" crossorigin="anonymous"></script>
         
         <title>Soccer</title>
     </head>
     <body>
-        <header id="m9Head">
-            <div id="wrap_head">
-                <h2 id="home"><a href="/">M9SOCCER</a></h2>
-                <nav>
-                    <ul>
-                        <li class="menu"><a href="/">홈</a></li>
-                        <li class="menu"><a href="/reservation">운동장 예약</a></li>
-                       <!-- <li class="menu"><a href>커뮤니티</a></li>-->
-                    </ul>
-                </nav>
+        
+        <nav class="navbar">
+            <div class="navbar_logo">
+                <i class="fas fa-futbol"></i>
+                <a href="/">M9SOCCER</a>
+            </div>
+            <ul class="navbar_menu">
+                <li><a href="/">홈</a></li>
+                <li><a href="/reservation">운동장 예약</a></li>
+                <li><a href="/test">문의하기</a></li>
+            </ul>
+            
+            <ul class="navbar_account">
                 <% if(account!=='' && account!=='admin'){ %>
-                    <strong id="login" ><%=account%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
-                    <div class="page"><strong ><a href='/mypage'>마이 페이지</a></strong></div>
-                    
+                    <strong id="login" ><%=account%>&nbsp;|&nbsp;</strong>
+                    <strong id="login"><%=account%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
                 <% } else if(account==='admin'){%>
                     <strong id="login"><%=account%>&nbsp;|&nbsp;  <a href='/logout'> LOGOUT </a></strong>
                     <div class="page"><strong><a href='/adminpage'>관리자 페이지</a></strong></div>
-                <%}else{%>   
-                    <strong id="login"><a href='/login'>로그인</a></strong>
+                <%}else{%>
+                    <li><a href='/login'>로그인</a></li>
+                    <li id="navbar_account_join"><a href='/join'>회원가입</a></li>
                 <%}%>
-            </div>
-        </header>
+
+            </ul>
+            <a href="#" class="navbar_hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </a>
+        </nav>
+
         <div id="test"></div>
         <article id="reservation_article">
             <div id="backImgMain"></div>

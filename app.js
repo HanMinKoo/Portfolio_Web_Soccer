@@ -18,6 +18,7 @@ const myPageRouter=require('./routes/mypage_RouterAndDB.js');
 const adminPageRouter=require('./routes/admingpage_RouterAndDB.js');
 const reservationStateRouter=require('./routes/reservationState_RouterAndDB');
 
+
 const app = express();
 const sessionStore= new mysqlStore
 ({
@@ -66,6 +67,9 @@ app.use('/reservation',reservateionRouter);
 app.use('/mypage',myPageRouter);
 app.use('/adminpage',adminPageRouter);
 app.use('/reservationstate',reservationStateRouter);
+app.use('/test',(req,res)=>{
+  res.render('head');
+});
 
 app.use(function(req, res, next) {
   next(createError(404));
