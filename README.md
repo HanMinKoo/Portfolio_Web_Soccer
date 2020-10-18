@@ -7,7 +7,7 @@
 #### 프론트엔드
 + HTML5
 + CSS3
-+ JavaScript(ES5+)
++ JavaScript(ES6)
 
 
 #### 백엔드
