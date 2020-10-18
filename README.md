@@ -17,7 +17,7 @@
 
 #### 서버 구축
 + AWS EC2
-+ OS: Linux 20.04
++ OS: ubuntu 20.04
 
 
 <br/><br/>
