@@ -24,6 +24,5 @@
 + OS: ubuntu 18.04
 
 
-# 해당 프로젝트는 과거 프로젝트입니다. 이 프로젝트의 최신 버전은 portfolio_express-react 폴더입니다.
-
-
+# 해당 프로젝트는 React를 추가하기 전의 과거 프로젝트입니다. 이 프로젝트의 최신 버전은 portfolio_express-react 폴더입니다.
+URL: https://github.com/HanMinKoo/portfolio_express-react
